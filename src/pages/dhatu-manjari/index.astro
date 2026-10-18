@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import Motif from '../../components/Motif.astro';
+import { url } from '../../lib/url';
+import { aggregateRoots, firstVarna } from '../../lib/roots.mjs';
+
+const roots = aggregateRoots(); // already in varṇa order
+
+// Group under the first varṇa (अ, आ, … क, ख …).
+const groups: { head: string; iast: string; roots: typeof roots }[] = [];
+for (const r of roots) {
+  const v = firstVarna(r.root || r.slug);
+  const head = v.deva;
+  if (groups.at(-1)?.head !== head) groups.push({ head, iast: v.iast, roots: [] });
+  groups.at(-1)!.roots.push(r);
+}
+
+const fold = (s = '') => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const searchKey = (r: (typeof roots)[number]) =>
+  [r.root, fold(r.root), r.root_devanagari, r.slug, r.sense, fold(r.sense)].filter(Boolean).join(' ').toLowerCase();
+---
+<Base title="धातुमञ्जरी" description="Dhātu-mañjarī: every verbal root met across the studies, in varṇa order.">
+  <header class="page-head">
+    <div class="wrap">
+      <div class="motif"><Motif name="sprig" /></div>
+      <h1 lang="sa">धातुमञ्जरी</h1>
+      <p class="iast">Dhātu-mañjarī</p>
+      <p class="gloss">Root index</p>
+      <p class="sub">Every root met so far, in varṇa order, with each form traced back to its verse.</p>
+    </div>
+  </header>
+
+  <div class="wrap wrap-wide">
+    <label class="visually-hidden" for="root-filter">Filter roots</label>
+    <input id="root-filter" class="root-filter" type="search" placeholder="√ root or meaning…" autocomplete="off" />
+
+    {roots.length === 0 && <p class="empty-note">No roots yet. They appear as studies add *.roots.yml files.</p>}
+
+    <div class="varna-groups">
+    {
+      groups.map((g) => (
+        <section class="varna-group">
+          <h2 class="varna-head"><span lang="sa">{g.head}</span> <span class="varna-iast">{g.iast}</span></h2>
+          <ul class="root-list">
+            {g.roots.map((r) => (
+              <li data-search={searchKey(r)}>
+                <a href={url(`dhatu-manjari/${r.slug}/`)}>
+                  <span class="r">
+                    {r.root_devanagari && <span class="deva" lang="sa">{r.root_devanagari}</span>}
+                    <span class="iast">{r.root}</span>
+                    {r.gana && <span class="pill">gaṇa {r.gana}</span>}
+                  </span>
+                  <span class="sense">{r.sense}</span>
+                  <span class="count">× {r.occurrences.length}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+    </div>
+    <p class="empty-note" id="no-match" hidden>No root matches.</p>
+  </div>
+
+  <script is:inline data-astro-rerun>
+    (function () {
+      var input = document.getElementById('root-filter');
+      var fold = function (s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
+      input.addEventListener('input', function () {
+        var q = input.value.trim().toLowerCase().replace(/^√/, '');
+        var qf = fold(q);
+        var any = false;
+        document.querySelectorAll('.varna-group').forEach(function (g) {
+          var shown = 0;
+          g.querySelectorAll('li').forEach(function (li) {
+            var k = li.getAttribute('data-search');
+            var hit = !q || k.indexOf(q) !== -1 || k.indexOf(qf) !== -1;
+            li.hidden = !hit;
+            if (hit) shown++;
+          });
+          g.hidden = shown === 0;
+          if (shown) any = true;
+        });
+        document.getElementById('no-match').hidden = any;
+      });
+    })();
+  </script>
+</Base>

@@ -1,0 +1,2018 @@
+/*
+  Shared structure and typography. Only the tokens in themes.css change per deity.
+  HARD RULE (brief §8): no dot / hole / bubble / grid-of-circles patterns or speckle textures anywhere.
+*/
+
+:root {
+  /* Every stack names Tiro Devanagari Sanskrit (then Noto Serif Devanagari) right after its Latin
+     face, so Devanagari anywhere (headings, nav, labels, mono) renders in a serif built for Sanskrit
+     and never falls to a system sans unless every web font fails (brief §7). */
+  --font-deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', serif;
+  --font-serif: 'Gentium Book Plus', 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', 'Noto Serif', Georgia, serif;
+  --font-sans: 'Noto Sans', 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Noto Sans Mono', 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --measure: 42rem; /* single-column page width on phones */
+  --prose: 70ch; /* header-band essence line only; main-column content spans full width */
+  --wide: 80rem; /* ~1280px max page width on laptops */
+  --gutter: 16px;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+[lang='sa'],
+.deva {
+  font-family: var(--font-deva);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.wrap-wide {
+  max-width: calc(var(--wide) + 2 * var(--gutter));
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ───────── Header ───────── */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 10px;
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text);
+  line-height: 1.15;
+}
+.brand-deva {
+  font-family: var(--font-deva);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.brand-iast {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.icon-link,
+.mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--accent);
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+.icon-link:hover,
+.mode-toggle:hover {
+  border-color: var(--border);
+  background: var(--bg);
+}
+.icon-link .deva {
+  font-size: 0.95rem;
+}
+.icon-link svg,
+.mode-toggle svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+.icon-link .label {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.icon-link .label .en {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+/* ───────── Footer ───────── */
+.site-footer {
+  margin-top: 4rem;
+  padding-block: 2rem 2.5rem;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-align: center;
+}
+.site-footer .deva {
+  font-size: 1rem;
+}
+
+/* ───────── Temple rule & motifs ───────── */
+.temple-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent-2);
+  margin-block: 2.5rem;
+}
+.temple-rule::before,
+.temple-rule::after {
+  content: '';
+  flex: 1;
+  height: 0;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 3px 0 -2px var(--border);
+}
+.temple-rule svg {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
+.motif {
+  color: var(--accent-2);
+}
+
+/* ───────── Pills ───────── */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+/* ───────── Study header band ───────── */
+.band {
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+  border-bottom: 1px solid var(--border);
+  padding-block: 2.25rem 1.75rem;
+  text-align: center;
+}
+.band .motif svg {
+  width: 40px;
+  height: 40px;
+}
+.band h1 {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-deva);
+  font-size: clamp(1.9rem, 7vw, 2.75rem);
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.35;
+}
+.band .title-iast {
+  margin: 0.1rem 0 0;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.band .text-name {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  color: var(--text);
+}
+.band .text-name .deva {
+  font-size: 1.05rem;
+}
+.band .essence {
+  margin: 0.9rem auto 1.1rem;
+  max-width: 34rem;
+  font-size: 1.1rem;
+}
+.band .source {
+  margin: -0.4rem 0 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.band .pills {
+  justify-content: center;
+}
+.band figure {
+  margin: 1.5rem auto 0;
+  max-width: 22rem;
+}
+.band figure img {
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.band figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+/* ───────── Study body sections (built by rehype-bodhini) ───────── */
+.bodhini {
+  padding-top: 1rem;
+}
+.bodhini .sec > h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2.75rem 0 1rem;
+  font-size: 1.45rem;
+  color: var(--accent);
+}
+.bodhini .sec > h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+.bodhini p,
+.bodhini li {
+  hyphens: auto;
+}
+.bodhini blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 2px solid var(--accent-2);
+  color: var(--muted);
+}
+
+/* ───────── Verse card (shared by study pages and the home hero) ───────── */
+.verse-card {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: inset 0 3px 0 -1px color-mix(in srgb, var(--accent-2) 55%, transparent);
+  transition: box-shadow 0.2s ease;
+}
+.verse-card:hover {
+  box-shadow:
+    inset 0 3px 0 -1px color-mix(in srgb, var(--accent-2) 55%, transparent),
+    0 6px 24px -14px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+@media (min-width: 640px) {
+  .verse-card {
+    padding: 1.5rem 1.75rem 1.25rem;
+  }
+}
+.verse-card > h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  scroll-margin-top: 1rem;
+}
+.verse-card > h3 a.anchor {
+  color: inherit;
+  text-decoration: none;
+}
+.verse-card:target,
+.verse-card:has(> h3:target) {
+  border-color: var(--accent);
+}
+.vc-pill {
+  margin: 0 0 1rem;
+}
+.vc-pill .pill {
+  font-style: normal;
+}
+.vc-deva {
+  margin: 0.25rem 0 0.75rem;
+  font-family: var(--font-deva);
+  font-size: clamp(1.3rem, 5.4vw, 1.65rem);
+  line-height: 2;
+  text-align: center;
+  white-space: pre-line;
+  color: var(--text);
+}
+.vc-iast {
+  margin: 0 0 1.25rem;
+  font-size: 1.02rem;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+  white-space: pre-line;
+  color: var(--muted);
+}
+.vc-padaccheda {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--gradient-start) 55%, transparent);
+  font-size: 0.98rem;
+}
+.vc-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+.vc-padaccheda .vc-label {
+  display: inline;
+  margin-right: 0.4rem;
+}
+
+/* Word table */
+.vc-words {
+  margin: 0 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+.vc-words > summary {
+  cursor: pointer;
+  padding: 0.55rem 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--accent);
+  list-style-position: inside;
+}
+.vc-words > summary .deva {
+  font-size: 1rem;
+  margin-right: 0.35rem;
+}
+.vc-words > summary .muted {
+  color: var(--muted);
+}
+.table-wrap {
+  padding: 0 0.5rem 0.5rem;
+}
+
+/* Tables never scroll sideways (brief §5a): fixed layout, full width, every cell wraps.
+   Long compounds break at their hyphens first, and anywhere only if a piece still won't fit. */
+.bodhini table,
+.verse-card table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.bodhini th,
+.bodhini td,
+.verse-card th,
+.verse-card td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45rem 0.4rem;
+  border-top: 1px solid var(--border);
+  overflow-wrap: anywhere;
+  word-break: normal;
+  white-space: normal;
+}
+.bodhini th,
+.verse-card th {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 0;
+  overflow-wrap: normal;
+}
+.bodhini .sec > table {
+  margin: 1rem 0;
+}
+/* Word tables: ≈ 30% word / 30% root·grammar / 40% meaning */
+.vc-words th:nth-child(1) {
+  width: 30%;
+}
+.vc-words th:nth-child(2) {
+  width: 30%;
+}
+.vc-words th:nth-child(3) {
+  width: 40%;
+}
+.vc-words td:first-child {
+  font-style: italic;
+}
+.vc-words td:first-child a {
+  text-decoration-style: dotted;
+}
+
+/* Phones: each word-table row becomes a small stacked card (word, grammar, meaning) */
+@media (max-width: 639px) {
+  .vc-words table,
+  .vc-words tbody,
+  .vc-words tr,
+  .vc-words td {
+    display: block;
+    width: auto;
+  }
+  .vc-words thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .vc-words tr {
+    padding: 0.55rem 0.35rem 0.6rem;
+    border-top: 1px solid var(--border);
+  }
+  .vc-words tr:first-child {
+    border-top: 0;
+  }
+  .vc-words td {
+    padding: 0.05rem 0;
+    border: 0;
+  }
+  .vc-words td:first-child {
+    font-size: 1.02rem;
+    color: var(--accent);
+  }
+  .vc-words td:first-child a {
+    color: inherit;
+  }
+  .vc-words td:nth-child(2) {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .vc-words td:not(:first-child)[data-label]::before {
+    content: attr(data-label) ' · ';
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+  }
+}
+
+/* Sub-blocks */
+.vc-block {
+  margin: 0 0 1rem;
+}
+.vc-block > p {
+  margin: 0.2rem 0 0.5rem;
+}
+.vc-block ul {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.2rem;
+}
+.vc-meaning > p:first-of-type {
+  font-size: 1.05rem;
+}
+.vc-reading-notes {
+  margin-left: 0.25rem;
+  padding: 0.5rem 0.8rem;
+  border-left: 3px double var(--accent-2);
+  background: color-mix(in srgb, var(--accent-2) 7%, transparent);
+  border-radius: 0 6px 6px 0;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+.vc-reading-notes .vc-label::before {
+  content: '✎ ';
+  letter-spacing: 0;
+}
+
+/* Code never scrolls sideways: wrap long lines */
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: visible !important;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+pre code {
+  white-space: inherit;
+}
+
+/* Inline metre patterns (GGLGLLLGLLGLGG): tight, never split mid-pattern */
+code.metre-pattern {
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  padding: 0 0.2em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--gradient-start) 70%, transparent);
+}
+
+/* Scansion: syllable above, weight below; units wrap whole, guru heavier than laghu */
+.scansion {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.scan-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.3rem;
+}
+.scan-row + .scan-row {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--border);
+}
+.syl {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.1rem;
+  padding: 0.2rem 0.3rem 0.15rem;
+  border-radius: 5px;
+  line-height: 1.25;
+}
+.syl .s {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+}
+.syl .w {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.syl.guru {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-bottom: 2px solid var(--accent);
+}
+.syl.guru .w {
+  font-weight: 700;
+  color: var(--accent);
+}
+.syl.laghu {
+  border-bottom: 1px solid var(--border);
+}
+.syl.laghu .w {
+  color: var(--muted);
+}
+
+/* Realizations: a personal journal margin, not main text */
+.sec-realizations {
+  margin-top: 2.5rem;
+  padding: 0.25rem 1.1rem 0.75rem;
+  border-radius: 4px 14px 14px 4px;
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-2) 12%, var(--surface)),
+    color-mix(in srgb, var(--accent) 6%, var(--surface))
+  );
+}
+.bodhini .sec-realizations > h2 {
+  margin-top: 1.25rem;
+}
+.bodhini .sec-realizations > h2::after {
+  display: none;
+}
+.sec-realizations p,
+.sec-realizations li {
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.sec-open-threads ul {
+  padding-left: 1.2rem;
+}
+
+/* ───────── Study footer navigation ───────── */
+.study-nav {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+@media (min-width: 560px) {
+  .study-nav {
+    grid-template-columns: 1fr 1fr;
+  }
+  .study-nav .next {
+    text-align: right;
+    grid-column: 2;
+  }
+}
+.study-nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none;
+}
+.study-nav .dir {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.study-nav .deva {
+  font-size: 1.05rem;
+}
+.related h2 {
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+/* ───────── Home ───────── */
+.hero {
+  text-align: center;
+  padding-block: 2.5rem 2rem;
+  background:
+    radial-gradient(ellipse at 30% 0%, var(--hero-ash), transparent 65%),
+    radial-gradient(ellipse at 75% 10%, var(--hero-kumkum), transparent 60%),
+    linear-gradient(180deg, var(--gradient-start), var(--bg));
+  border-bottom: 1px solid var(--border);
+}
+.hero .motif svg {
+  width: 44px;
+  height: 44px;
+}
+.hero h1 {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-deva);
+  font-size: clamp(2.3rem, 11vw, 3.6rem);
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.3;
+}
+.hero .site-iast {
+  margin: 0;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+.hero-verse {
+  margin: 2rem auto 0;
+  max-width: 34rem;
+}
+.hero-verse .deva {
+  font-size: clamp(1.25rem, 5.2vw, 1.6rem);
+  line-height: 2;
+  white-space: pre-line;
+  margin: 0;
+}
+.hero-verse .iast {
+  margin: 0.75rem 0 0;
+  font-style: italic;
+  color: var(--muted);
+  white-space: pre-line;
+  font-size: 1rem;
+}
+.hero-verse .english {
+  margin: 0.9rem auto 0;
+  max-width: 30rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.hero-verse .cite {
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.padashah {
+  margin: 1.25rem auto 0;
+  max-width: var(--measure);
+  text-align: left;
+}
+.padashah > summary {
+  display: inline-block;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-deva);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.padashah > summary::-webkit-details-marker {
+  display: none;
+}
+.padashah-wrap {
+  text-align: center;
+}
+.padashah[open] > summary .arrow {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+.dedication {
+  margin: 2rem auto 0;
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.collection {
+  margin-top: 3rem;
+}
+.collection-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.collection-head h2 {
+  margin: 0;
+  font-family: var(--font-deva);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+.collection-head .iast {
+  font-style: italic;
+  color: var(--muted);
+}
+.card-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+.study-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--surface) 55%, var(--gradient-start));
+  box-shadow: inset 0 3px 0 -1px var(--accent);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.study-card:hover {
+  background: linear-gradient(160deg, var(--surface) 30%, var(--gradient-start) 80%, var(--gradient-end));
+  box-shadow:
+    inset 0 3px 0 -1px var(--accent),
+    0 8px 22px -14px var(--accent);
+}
+.study-card .deva {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.4;
+}
+.study-card .iast {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.study-card .essence {
+  margin: 0.25rem 0 0.4rem;
+  font-size: 0.98rem;
+}
+.study-card .meta {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.roots-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 3rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, var(--surface), var(--gradient-start));
+  text-decoration: none;
+  color: var(--text);
+}
+.roots-link svg {
+  width: 36px;
+  height: 36px;
+  color: var(--accent-2);
+  flex: none;
+}
+.roots-link .deva {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.roots-link .iast {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ───────── Dhātu-mañjarī ───────── */
+.page-head {
+  text-align: center;
+  padding-block: 2rem 1.5rem;
+  background: linear-gradient(180deg, var(--gradient-start), var(--bg));
+  border-bottom: 1px solid var(--border);
+}
+.page-head h1 {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-deva);
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  font-weight: 600;
+  color: var(--accent);
+}
+.page-head .iast {
+  margin: 0;
+  font-style: italic;
+  color: var(--muted);
+}
+.page-head .sub {
+  margin: 0.75rem auto 0;
+  max-width: 30rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.page-head .motif svg {
+  width: 40px;
+  height: 40px;
+}
+.root-filter {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0 1rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+.root-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.root-list li a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  padding: 0.7rem 0.25rem;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+}
+.root-list li a:hover {
+  background: linear-gradient(90deg, var(--gradient-start), transparent);
+}
+.root-list .r {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 10px;
+}
+.root-list .r .deva {
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+.root-list .r .iast {
+  font-style: italic;
+}
+.root-list .sense {
+  grid-column: 1;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.root-list .count {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: center;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.varna-head {
+  margin: 1.5rem 0 0.25rem;
+  font-family: var(--font-deva);
+  font-size: 1.1rem;
+  color: var(--accent-2);
+}
+.empty-note {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Root page */
+.kind-group h2 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+.kind-group h2 .deva {
+  font-weight: 600;
+}
+.kind-group h2 .en {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+.occ {
+  margin: 0 0 0.75rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.occ .form {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 10px;
+}
+.occ .form .deva {
+  font-size: 1.25rem;
+}
+.occ .form .iast {
+  font-style: italic;
+}
+.occ .grammar {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.occ .context {
+  margin: 0.35rem 0;
+  font-size: 0.98rem;
+}
+.occ .where {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+}
+
+
+/* ───────── Labels and glosses ───────── */
+.eyebrow {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.eyebrow [lang='sa'] {
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+.gloss {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+.h-sub {
+  font-size: 0.7em;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Home hero: centred word-by-word button with caption */
+.padashah > summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-family: var(--font-sans);
+}
+.padashah > summary .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+.padashah > summary .btn [lang='sa'] {
+  font-size: 1.05rem;
+}
+.padashah > summary:hover .btn {
+  background: var(--gradient-start);
+}
+.padashah > summary .caption {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.padashah[open] > summary .caption {
+  display: none;
+}
+.padashah .verse-card {
+  text-align: left;
+}
+
+/* ───────── Study layout: contents rail · body · quick-context rail ───────── */
+.study-layout {
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.toc {
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+}
+.toc > summary {
+  cursor: pointer;
+  padding: 0.6rem 0.9rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+.toc > summary [lang='sa'] {
+  font-size: 1.05rem;
+}
+.toc nav {
+  padding: 0 0.9rem 0.75rem;
+}
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc li {
+  margin: 0.1rem 0;
+}
+.toc a {
+  display: block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  color: var(--text);
+  text-decoration: none;
+}
+.toc a:hover {
+  background: var(--gradient-start);
+  color: var(--accent);
+}
+.toc .toc-verses {
+  margin: 0.1rem 0 0.4rem 0.6rem;
+  padding-left: 0.4rem;
+  border-left: 1px solid var(--border);
+}
+.toc .toc-verses a {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.toc .toc-verses a[aria-current='true'] {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--gradient-start) 70%, transparent);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+.rail-right {
+  display: none;
+}
+
+/* Realizations (from Kavitha): quoted entries, journal margin */
+.sec-realizations blockquote {
+  margin: 0.75rem 0;
+  padding: 0.35rem 0 0.35rem 0.9rem;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--text);
+}
+.sec-realizations blockquote p {
+  margin: 0;
+}
+
+/* ───────── Tablet (640–1023px): wider single column, tables open ───────── */
+@media (min-width: 640px) {
+  :root {
+    --gutter: 24px;
+    --measure: 48rem;
+  }
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ───────── Laptop (≥1024px): contents rail + main, two-up verse cards ───────── */
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 32px;
+  }
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .study-layout {
+    max-width: calc(var(--wide) + 2 * var(--gutter));
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 2.75rem;
+    align-items: start;
+  }
+  .toc {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    margin-top: 2.25rem;
+    border: 0;
+    background: none;
+  }
+  .toc > summary {
+    pointer-events: none;
+    list-style: none;
+    padding-inline: 0.5rem;
+  }
+  .toc > summary::-webkit-details-marker {
+    display: none;
+  }
+  .toc nav {
+    padding: 0;
+  }
+  /* The rail always shows its list on wide screens, even if the <details> was folded at a narrower width */
+  .toc::details-content {
+    content-visibility: visible;
+    display: block;
+  }
+  .band .essence {
+    max-width: var(--prose);
+  }
+
+  /* Verse card: reading side | study side, notes full-width underneath */
+  .verse-card {
+    padding: 1.75rem 2rem 1.5rem;
+  }
+  .vc-top.has-words {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 0 2rem;
+    align-items: start;
+  }
+  .vc-top.has-words .vc-words {
+    margin: 0;
+  }
+  /* Home hero: the padaccheda is short, so the table runs full width beneath it */
+  .vc-top.has-words.stacked {
+    display: block;
+  }
+  .vc-notes {
+    margin-top: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .padashah {
+    max-width: 62rem;
+  }
+
+  /* Dhātu-mañjarī: 3 columns grouped by initial varṇa; root pages in 2 columns */
+  .root-filter {
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+  .varna-groups {
+    columns: 3;
+    column-gap: 2.5rem;
+  }
+  .varna-group {
+    break-inside: avoid;
+  }
+  .varna-group:first-child .varna-head {
+    margin-top: 0;
+  }
+  .kind-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1rem;
+  }
+}
+
+/* ───────── Desktop (≥1440px): add the quick-context rail ───────── */
+@media (min-width: 1440px) {
+  :root {
+    --wide: 90rem; /* ~1440px */
+  }
+  body {
+    font-size: 1.125rem;
+  }
+  .card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .study-layout {
+    grid-template-columns: 14rem minmax(0, 1fr) 15rem;
+    gap: 2.75rem;
+  }
+  .rail-right {
+    display: block;
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    margin-top: 2.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+  }
+  .rail-block {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .rail-head {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .rail-head [lang='sa'] {
+    font-size: 1rem;
+  }
+  .rail-current {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--muted);
+  }
+  .rail-current:empty {
+    display: none;
+  }
+  .rail-roots {
+    list-style: none;
+    margin: 0 0 0.75rem;
+    padding: 0;
+  }
+  .rail-roots li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.5rem;
+    padding: 0.3rem 0;
+  }
+  .rail-roots a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    text-decoration: none;
+  }
+  .rail-roots .deva {
+    font-size: 1.05rem;
+  }
+  .rail-roots .iast {
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+  .rail-roots .sense {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .rail-empty {
+    margin: 0 0 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .rail-more,
+  .rail-nav {
+    display: block;
+    margin-top: 0.35rem;
+    text-decoration: none;
+  }
+  .rail-nav [lang='sa'] {
+    font-size: 1rem;
+  }
+  .varna-groups {
+    columns: 4;
+  }
+}
+
+.collection-head .gloss {
+  flex-basis: 100%;
+}
+.hero .gloss,
+.page-head .gloss {
+  margin: 0.15rem 0 0;
+}
+.roots-link .gloss {
+  margin-top: 0.15rem;
+}
+.varna-iast {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ───────── Justified prose (brief) ─────────
+   Running English prose is justified and hyphenated. Sanskrit is tagged lang="sa-Latn" / "sa",
+   which has no hyphenation dictionary, so it never splits. Verse lines, table cells, headings,
+   labels, captions and scansion keep their own alignment. Phones fall back to left. */
+.bodhini .sec > p,
+.bodhini .sec > ul > li,
+.bodhini .sec > ol > li,
+.vc-notes p,
+.vc-notes li,
+.vc-meaning p,
+.sec-realizations blockquote p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: pretty;
+}
+[lang='sa'],
+[lang='sa-Latn'],
+.bodhini [lang='sa'],
+.bodhini [lang='sa-Latn'],
+.bodhini p[lang],
+.verse-card p[lang] {
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+@media (max-width: 639px) {
+  .bodhini .sec > p,
+  .bodhini .sec > ul > li,
+  .bodhini .sec > ol > li,
+  .vc-notes p,
+  .vc-notes li,
+  .vc-meaning p,
+  .sec-realizations blockquote p {
+    text-align: left;
+  }
+}
+
+/* ───────── Prastāvanā: a personal letter ─────────
+   No card or box; generous leading; justified from 640px, left on phones.
+   Kavitha's lowercase is intentional: nothing here may recase the text. */
+.letter {
+  margin-top: 2.5rem;
+}
+.letter p {
+  margin: 0 0 1.35em;
+  font-size: 1.1rem;
+  line-height: 1.95;
+  text-transform: none;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: pretty;
+}
+.letter p::first-letter {
+  text-transform: none;
+}
+.letter-head {
+  margin: 0 0 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-2);
+}
+.letter-head [lang='sa'] {
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+.letter .letter-more,
+.letter .letter-back {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: left;
+}
+.letter .letter-more [lang='sa'],
+.letter .letter-back [lang='sa'] {
+  font-size: 1.05rem;
+}
+@media (min-width: 640px) {
+  .letter p {
+    text-align: justify;
+  }
+  .letter .letter-more,
+  .letter .letter-back {
+    text-align: left;
+  }
+}
+
+/* Home page preface preview only: centred, italic, in quotation marks.
+   The full /prastavana/ page keeps the plain letter style above. */
+.letter-excerpt .letter-head,
+.letter-excerpt .letter-more {
+  text-align: center;
+}
+.letter-excerpt p.letter-quote {
+  font-style: italic;
+  text-align: center;
+  hanging-punctuation: first last;
+}
+@media (min-width: 640px) {
+  .letter-excerpt p.letter-quote,
+  .letter-excerpt .letter-more {
+    text-align: center;
+  }
+}
+
+/* ───────── Motion (brief §5b) ─────────
+   Calm and brief: fade + 10px rise, ease-out, nothing over ~600ms, no bounce/spin/parallax.
+   The entrance is pure CSS (content ends visible even without JS); the scroll reveal only
+   hides elements after its script has run. prefers-reduced-motion turns all of it off. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.site-header,
+main > * {
+  animation: rise-in 380ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.site-header {
+  animation-delay: 0ms;
+}
+main > :nth-child(1) {
+  animation-delay: 70ms;
+}
+main > :nth-child(2) {
+  animation-delay: 140ms;
+}
+main > :nth-child(n + 3) {
+  animation-delay: 210ms;
+}
+/* Hero lines arrive one after another: title, verse, then the pada button */
+.hero .wrap > * {
+  animation: rise-in 380ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.hero .wrap > :nth-child(1),
+.hero .wrap > :nth-child(2) {
+  animation-delay: 80ms;
+}
+.hero .wrap > :nth-child(3),
+.hero .wrap > :nth-child(4) {
+  animation-delay: 140ms;
+}
+.hero .wrap > :nth-child(n + 5) {
+  animation-delay: 200ms;
+}
+
+/* Scroll reveal: below-the-fold cards and sections, once each */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 500ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Page-to-page: a soft cross-fade, and a gentle morph for shared titles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+  animation-timing-function: ease-out;
+}
+::view-transition-group(*) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ═════════ Reader themes: roles, signatures, dark glows (brief §6c–§6d) ═════════
+   Element families every signature applies to, site-wide:
+     CARDS     .verse-card .study-card .occ .roots-link .study-nav a
+     REAL      .sec-realizations
+     HEADINGS  .bodhini .sec > h2  .collection-head h2  .kind-group h2  .related h2
+     RULES     .temple-rule (the divider between sections)
+     TITLES    .brand-deva  .hero h1  .band h1  .page-head h1
+   Glows are static gradients only. No dot, bubble or speckle textures (§8). */
+
+/* ── Roles: which elements take which colour (accent comes from the deity) ── */
+.site-header {
+  box-shadow: inset 0 4px 0 var(--accent); /* the 4px top band */
+  padding-top: 4px;
+}
+.brand-deva,
+.hero h1,
+.band h1,
+.page-head h1 {
+  color: var(--c-title);
+}
+.bodhini .sec > h2,
+.collection-head h2,
+.kind-group h2,
+.related h2,
+.toc > summary,
+.rail-head,
+.varna-head {
+  color: var(--c-head);
+}
+.vc-words td:first-child,
+.vc-words td:first-child a {
+  color: var(--c-word);
+}
+.vc-words td:nth-child(2) {
+  color: var(--c-gram);
+}
+.vc-words th,
+.bodhini th,
+.verse-card th,
+.letter-head,
+.eyebrow {
+  color: var(--c-label);
+}
+.syl.guru {
+  border-bottom-color: var(--c-guru);
+  background: color-mix(in srgb, var(--c-guru) 12%, transparent);
+}
+.syl.guru .w {
+  color: var(--c-guru);
+}
+.syl.laghu .w {
+  color: var(--c-laghu);
+}
+.sec-realizations {
+  border-left-color: var(--c-real);
+}
+.sec-realizations blockquote {
+  border-left-color: color-mix(in srgb, var(--c-real) 45%, transparent);
+}
+
+/* The page ground: every theme sets body; dark modes add a glow (fixed so it stays in view) */
+body {
+  background-color: var(--bg);
+  background-attachment: fixed;
+}
+
+/* ── Kalamkārī: dye roles, printed band border, four-dye rule, madder underline ── */
+:root[data-reader='kalamkari'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a) {
+  border-color: transparent;
+  box-shadow:
+    0 0 0 1px var(--iron),
+    0 0 0 4px var(--surface),
+    0 0 0 5px var(--madder),
+    0 0 0 7px var(--surface),
+    0 0 0 8px var(--indigo);
+}
+:root[data-reader='kalamkari'] :is(.study-card, .roots-link, .study-nav a):hover {
+  box-shadow:
+    0 0 0 1px var(--iron),
+    0 0 0 4px var(--surface),
+    0 0 0 5px var(--madder),
+    0 0 0 7px var(--surface),
+    0 0 0 8px var(--indigo),
+    0 14px 28px -18px var(--iron);
+}
+/* room for the 8px rings */
+:root[data-reader='kalamkari'] .card-grid,
+:root[data-reader='kalamkari'] .study-nav {
+  gap: 24px;
+}
+:root[data-reader='kalamkari'] .kind-items {
+  gap: 20px;
+}
+:root[data-reader='kalamkari'] .occ {
+  margin-bottom: 20px;
+}
+:root[data-reader='kalamkari'] .card-grid {
+  padding: 8px;
+}
+:root[data-reader='kalamkari'] .temple-rule::before,
+:root[data-reader='kalamkari'] .temple-rule::after {
+  height: 3px;
+  border: 0;
+  box-shadow: none;
+  background: linear-gradient(90deg, var(--indigo) 0 25%, var(--madder) 25% 50%, var(--myro) 50% 75%, var(--leaf) 75% 100%);
+}
+:root[data-reader='kalamkari'] :is(.bodhini .sec > h2, .collection-head h2, .kind-group h2, .related h2) {
+  text-decoration: underline 2px var(--madder);
+  text-underline-offset: 0.3em;
+}
+
+/* ── Paurṇamī: moon halo behind titles, moonlight from above, silver rule, haloed cards ── */
+:root[data-reader='paurnami'] body {
+  background-image: radial-gradient(ellipse 70% 38% at 50% 0%, color-mix(in srgb, var(--decor) 22%, transparent), transparent 70%);
+}
+:root[data-reader='paurnami'] :is(.hero h1, .band h1, .page-head h1) {
+  background: radial-gradient(ellipse 9em 2.2em at 50% 55%, color-mix(in srgb, var(--decor) 32%, transparent), transparent 72%) no-repeat;
+}
+:root[data-reader='paurnami'] .temple-rule::before,
+:root[data-reader='paurnami'] .temple-rule::after {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--decor), transparent);
+  box-shadow: 0 0 6px var(--decor);
+}
+:root[data-reader='paurnami'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a) {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 6px 24px -12px color-mix(in srgb, var(--decor) 60%, transparent);
+}
+
+/* ── Tāḍapatra: ruled leaf lines, double left margin, leaf-ended cards, ink headings, short rule ── */
+:root[data-reader='tadapatra'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a, .sec-realizations) {
+  background-color: var(--surface);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 27px,
+    color-mix(in srgb, var(--decor) 20%, transparent) 27px 28px
+  );
+  border-left: 4px double var(--decor);
+  border-radius: 4px 40px 40px 4px;
+  box-shadow: none;
+}
+:root[data-reader='tadapatra'] :is(.bodhini .sec > h2, .collection-head h2, .kind-group h2, .related h2) {
+  font-weight: 700;
+  text-decoration: underline 1px var(--decor);
+  text-underline-offset: 0.3em;
+}
+:root[data-reader='tadapatra'] .temple-rule {
+  margin-inline: 20%;
+  gap: 0;
+}
+:root[data-reader='tadapatra'] .temple-rule svg {
+  display: none;
+}
+:root[data-reader='tadapatra'] .temple-rule::before,
+:root[data-reader='tadapatra'] .temple-rule::after {
+  height: 2px;
+  border: 0;
+  box-shadow: none;
+  background: var(--decor);
+}
+
+/* ── Kuṅkuma: tilaka bars (6px on headings + Realizations, 4px top edge on every card) ── */
+:root[data-reader='kunkuma'] :is(.bodhini .sec > h2, .collection-head h2, .kind-group h2, .related h2) {
+  border-left: 6px solid var(--decor);
+  padding-left: 10px;
+}
+:root[data-reader='kunkuma'] .sec-realizations {
+  border-left: 6px solid var(--decor);
+}
+:root[data-reader='kunkuma'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a) {
+  border-top: 4px solid var(--decor);
+  box-shadow: none;
+}
+:root[data-reader='kunkuma'] .temple-rule::before,
+:root[data-reader='kunkuma'] .temple-rule::after {
+  height: 3px;
+  border: 0;
+  box-shadow: none;
+  background: linear-gradient(90deg, transparent, var(--decor), transparent);
+}
+
+/* ── Vṛndā: leaf-cut corners, vine rule, green left bar on headings ── */
+:root[data-reader='vrnda'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a, .sec-realizations) {
+  border-radius: 22px 3px 22px 3px;
+}
+:root[data-reader='vrnda'] :is(.bodhini .sec > h2, .collection-head h2, .kind-group h2, .related h2) {
+  border-left: 3px solid var(--decor);
+  padding-left: 8px;
+  border-radius: 0 0 0 8px;
+}
+:root[data-reader='vrnda'] .temple-rule::before,
+:root[data-reader='vrnda'] .temple-rule::after {
+  height: 10px;
+  border: 0;
+  box-shadow: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%232E6B28' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x center;
+}
+:root[data-mode='dark'][data-reader='vrnda'] .temple-rule::before,
+:root[data-mode='dark'][data-reader='vrnda'] .temple-rule::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%236FCB63' stroke-width='1.4'/%3E%3C/svg%3E");
+}
+
+/* ── Dark-mode glows (§6d): static, smooth gradients only ── */
+:root[data-mode='dark'][data-reader='paurnami'] body {
+  background-image: radial-gradient(ellipse 75% 40% at 50% 0%, rgba(220, 214, 190, 0.2), transparent 70%);
+}
+:root[data-mode='dark'][data-reader='paurnami'] :is(.hero h1, .band h1, .page-head h1, .brand-deva) {
+  text-shadow: 0 0 18px rgba(220, 214, 190, 0.35);
+}
+
+:root[data-mode='dark'][data-reader='kalamkari'] body {
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(140, 155, 192, 0.1), transparent 42%),
+    radial-gradient(circle at 100% 0%, rgba(210, 112, 79, 0.1), transparent 42%),
+    radial-gradient(circle at 0% 100%, rgba(163, 178, 114, 0.08), transparent 42%),
+    radial-gradient(circle at 100% 100%, rgba(201, 160, 74, 0.09), transparent 42%);
+}
+:root[data-mode='dark'][data-reader='kalamkari'] :is(.hero h1, .band h1, .page-head h1, .brand-deva) {
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+:root[data-mode='dark'][data-reader='kalamkari'] .temple-rule::before,
+:root[data-mode='dark'][data-reader='kalamkari'] .temple-rule::after {
+  box-shadow: 0 0 8px rgba(201, 160, 74, 0.25);
+  opacity: 0.9;
+}
+
+:root[data-mode='dark'][data-reader='tadapatra'] body {
+  background-image: radial-gradient(ellipse 60% 45% at 50% 105%, rgba(240, 170, 70, 0.2), transparent 70%);
+}
+:root[data-mode='dark'][data-reader='tadapatra'] :is(.hero h1, .band h1, .page-head h1, .brand-deva) {
+  text-shadow: 0 0 14px rgba(240, 170, 70, 0.4);
+}
+:root[data-mode='dark'][data-reader='tadapatra'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a) {
+  box-shadow: 0 10px 30px -14px rgba(240, 170, 70, 0.35);
+}
+
+:root[data-mode='dark'][data-reader='kunkuma'] body {
+  background-image: radial-gradient(ellipse 70% 50% at 0% 0%, rgba(224, 80, 63, 0.22), transparent 65%);
+}
+:root[data-mode='dark'][data-reader='kunkuma'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a) {
+  box-shadow: 0 -2px 18px -4px rgba(224, 80, 63, 0.45);
+}
+:root[data-mode='dark'][data-reader='kunkuma'] :is(.bodhini .sec > h2, .collection-head h2, .kind-group h2, .related h2) {
+  text-shadow: 0 0 12px rgba(224, 80, 63, 0.35);
+}
+
+:root[data-mode='dark'][data-reader='vrnda'] body {
+  background-image: radial-gradient(ellipse 80% 45% at 50% 0%, rgba(111, 203, 99, 0.16), transparent 70%);
+}
+:root[data-mode='dark'][data-reader='vrnda'] .temple-rule::before,
+:root[data-mode='dark'][data-reader='vrnda'] .temple-rule::after {
+  filter: drop-shadow(0 0 4px rgba(111, 203, 99, 0.6));
+}
+:root[data-mode='dark'][data-reader='vrnda'] :is(.hero h1, .band h1, .page-head h1, .brand-deva) {
+  text-shadow: 0 0 14px rgba(111, 203, 99, 0.3);
+}
+
+/* ── Theme switcher (§6e) ── */
+.reader-menu {
+  position: relative;
+}
+.reader-menu > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+.reader-menu > summary::-webkit-details-marker {
+  display: none;
+}
+.reader-menu > summary:hover,
+.reader-menu[open] > summary {
+  border-color: var(--border);
+  background: var(--bg);
+}
+.reader-menu > summary svg {
+  width: 20px;
+  height: 20px;
+}
+.reader-menu .menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  width: min(17rem, calc(100vw - 2 * var(--gutter)));
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-sans);
+}
+.reader-menu .menu-head {
+  margin: 0.25rem 0.5rem 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-label);
+}
+.reader-menu .menu-head [lang='sa'] {
+  font-size: 0.95rem;
+}
+.reader-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.88rem;
+  text-align: left;
+  cursor: pointer;
+}
+.reader-option:hover {
+  background: var(--bg);
+}
+.reader-option[aria-checked='true'] {
+  border-color: var(--border);
+  background: var(--bg);
+}
+.reader-option .names {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.reader-option .names [lang='sa'] {
+  font-size: 1.02rem;
+}
+.reader-option .names .en {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.reader-option .tick {
+  margin-left: auto;
+  color: var(--accent);
+  visibility: hidden;
+}
+.reader-option[aria-checked='true'] .tick {
+  visibility: visible;
+}
+/* swatch: the theme's ground, surface, decor and accent as four bands (no dots) */
+.swatch {
+  flex: none;
+  width: 30px;
+  height: 22px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: linear-gradient(90deg, var(--sw-bg) 0 30%, var(--sw-surface) 30% 55%, var(--sw-decor) 55% 78%, var(--sw-accent) 78% 100%);
+}
+:root[data-mode='dark'] .swatch {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(90deg, var(--sw-bg-d) 0 30%, var(--sw-surface-d) 30% 55%, var(--sw-decor-d) 55% 78%, var(--sw-accent-d) 78% 100%);
+}
+.reader-menu .mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  padding: 0.5rem 0.5rem 0.25rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.reader-menu .mode-row .mode-toggle {
+  min-height: 34px;
+  padding: 4px 8px;
+  border-color: var(--border);
+}
+/* Small phones: the light/dark toggle lives inside the theme menu so the header stays on one line */
+@media (max-width: 420px) {
+  .mode-toggle-header {
+    display: none;
+  }
+}
+/* Paurṇamī dark: the halo stays a soft moon behind the title, not a spotlight */
+:root[data-mode='dark'][data-reader='paurnami'] :is(.hero h1, .band h1, .page-head h1) {
+  background: radial-gradient(ellipse 8em 2em at 50% 55%, color-mix(in srgb, var(--decor) 15%, transparent), transparent 72%) no-repeat;
+}
+
+/* ───────── Header layering ─────────
+   The entrance animation gives the header and hero their own stacking layers, so without a
+   z-index here the hero (later in the page) painted over the open theme menu. */
+.site-header {
+  position: relative;
+  z-index: 50;
+}

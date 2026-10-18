@@ -1,0 +1,47 @@
+---
+// वर्ण-पट · Theme switcher (brief §6e): the five reader themes with swatches, plus light/dark.
+// Behaviour lives in the layout's inline script so it re-binds after page-to-page navigation.
+import { readers } from '../lib/readers';
+
+const swatchStyle = (r: (typeof readers)[number]) =>
+  [
+    `--sw-bg:${r.light.bg}`,
+    `--sw-surface:${r.light.surface}`,
+    `--sw-decor:${r.light.decor}`,
+    `--sw-accent:${r.light.accent}`,
+    `--sw-bg-d:${r.dark.bg}`,
+    `--sw-surface-d:${r.dark.surface}`,
+    `--sw-decor-d:${r.dark.decor}`,
+    `--sw-accent-d:${r.dark.accent}`,
+  ].join(';');
+---
+<details class="reader-menu">
+  <summary aria-label="वर्ण-पट · Theme" title="वर्ण-पट · Theme">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="14" rx="2.5"></rect>
+      <path d="M9 5v14M14.5 5v14"></path>
+    </svg>
+  </summary>
+  <div class="menu" role="radiogroup" aria-label="Theme">
+    <p class="menu-head"><span lang="sa">वर्ण-पट</span> · Theme</p>
+    {
+      readers.map((r) => (
+        <button class="reader-option" type="button" role="radio" aria-checked="false" data-reader-key={r.key} style={swatchStyle(r)}>
+          <span class="swatch" aria-hidden="true" />
+          <span class="names">
+            <span lang="sa">{r.deva}</span>
+            <span class="en">{r.iast}</span>
+          </span>
+          <span class="tick" aria-hidden="true">✓</span>
+        </button>
+      ))
+    }
+    <div class="mode-row">
+      <span><span lang="sa">दिवा · रात्रिः</span> · Light / dark</span>
+      <button class="mode-toggle" type="button" aria-label="Toggle light and dark">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>
+        <svg class="i-lamp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-1.8 2.6-2.6 4.3-2.6 5.8a2.6 2.6 0 0 0 5.2 0c0-1.5-.8-3.2-2.6-5.8z"></path><path d="M4 13h16c-.8 3-4 5-8 5s-7.2-2-8-5z"></path><path d="M12 18v2.5M9 21h6"></path></svg>
+      </button>
+    </div>
+  </div>
+</details>

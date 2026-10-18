@@ -1,0 +1,73 @@
+---
+// One page per root, generated from every *.roots.yml. Never hand-edited.
+import Base from '../../layouts/Base.astro';
+import Motif from '../../components/Motif.astro';
+import { url } from '../../lib/url';
+import { aggregateRoots } from '../../lib/roots.mjs';
+
+export function getStaticPaths() {
+  return aggregateRoots().map((root) => ({ params: { root: root.slug }, props: { root } }));
+}
+
+const { root } = Astro.props;
+
+const KINDS = [
+  { deva: 'तिङन्तानि', en: 'finite verbs', kinds: ['finite-verb'] },
+  { deva: 'कृदन्तानि', en: 'participles', kinds: ['participle', 'gerundive'] },
+  { deva: 'क्त्वा · ल्यप् · तुमुन्', en: 'gerunds & infinitives', kinds: ['gerund', 'infinitive'] },
+  { deva: 'नामानि', en: 'nouns, adjectives & compound members', kinds: ['noun', 'adjective', 'compound-member'] },
+];
+const known = new Set(KINDS.flatMap((k) => k.kinds));
+const groups = [
+  ...KINDS.map((k) => ({ ...k, items: root.occurrences.filter((o: any) => k.kinds.includes(o.kind)) })),
+  { deva: 'अन्यानि', en: 'other', kinds: [], items: root.occurrences.filter((o: any) => !known.has(o.kind)) },
+].filter((g) => g.items.length);
+
+const studyCount = new Set(root.occurrences.map((o: any) => o.study)).size;
+---
+<Base title={`√${root.root?.replace(/^√/, '') ?? root.slug}`} description={`${root.root} — ${root.sense}`}>
+  <header class="page-head">
+    <div class="wrap">
+      <div class="motif"><Motif name="sprig" /></div>
+      <h1 lang="sa">{root.root_devanagari ?? root.root}</h1>
+      <p class="iast">{root.root}</p>
+      <p class="gloss"><span lang="sa">धातुः</span> · verbal root</p>
+      <p class="sub">
+        {root.sense}{root.gana ? ` · gaṇa ${root.gana}` : ''}<br />
+        {root.occurrences.length} occurrence{root.occurrences.length === 1 ? '' : 's'} in {studyCount} stud{studyCount === 1 ? 'y' : 'ies'}
+      </p>
+    </div>
+  </header>
+
+  <div class="wrap wrap-wide">
+    {
+      groups.map((g) => (
+        <section class="kind-group">
+          <h2>
+            <span class="deva" lang="sa">{g.deva}</span>
+            <span class="en">{g.en}</span>
+          </h2>
+          <div class="kind-items">
+          {g.items.map((o: any) => (
+            <div class="occ">
+              <div class="form">
+                {o.form_devanagari && <span class="deva" lang="sa">{o.form_devanagari}</span>}
+                <span class="iast">{o.form}</span>
+              </div>
+              <div class="grammar">
+                {o.grammar}
+                {o.prefixes?.length ? ` · upasarga: ${o.prefixes.join(' + ')}` : ''}
+              </div>
+              {o.context && <p class="context">{o.context}</p>}
+              <a class="where" href={url(`${o.study}/#${o.anchor}`)}>
+                <span lang="sa">{o.studyTitleDeva ?? o.studyTitle ?? o.study}</span> · {o.anchor}
+              </a>
+            </div>
+          ))}
+          </div>
+        </section>
+      ))
+    }
+    <p style="margin-top:2rem"><a href={url('dhatu-manjari/')}>← <span lang="sa">धातुमञ्जरी</span> · Root index</a></p>
+  </div>
+</Base>

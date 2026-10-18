@@ -1,0 +1,29 @@
+---
+// The preface, rendered whole from content/pages/prastavana.md, exactly as written.
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Motif from '../components/Motif.astro';
+import TempleRule from '../components/TempleRule.astro';
+import { url } from '../lib/url';
+
+const entry = await getEntry('pages', 'prastavana');
+if (!entry) throw new Error('content/pages/prastavana.md is missing');
+const { Content } = await render(entry);
+const { title, title_devanagari, gloss } = entry.data;
+---
+<Base title={title} description="प्रस्तावना · Preface to Vāgartha-saṅgamaḥ">
+  <header class="page-head">
+    <div class="wrap">
+      <div class="motif"><Motif name="lamp" /></div>
+      <h1 lang="sa">{title_devanagari ?? title}</h1>
+      <p class="iast">{title}</p>
+      {gloss && <p class="gloss">{gloss}</p>}
+    </div>
+  </header>
+
+  <article class="wrap letter">
+    <Content />
+    <TempleRule motif="lamp" />
+    <p class="letter-back"><a href={url()}>← <span lang="sa">वागर्थसङ्गमः</span> · Home</a></p>
+  </article>
+</Base>

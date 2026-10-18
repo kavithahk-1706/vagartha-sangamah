@@ -1,0 +1,72 @@
+---
+// Single-line motifs (inline SVG, stroke only). Brief §8: spacious, minimal, used sparingly.
+// No clustered dots, holes or circles — the flute is drawn without finger holes on purpose.
+export type MotifName = 'lamp' | 'lotus' | 'flute' | 'trident' | 'sprig';
+interface Props {
+  name: MotifName;
+  class?: string;
+  label?: string;
+}
+const { name, class: cls = '', label } = Astro.props;
+---
+<svg
+  class={cls}
+  viewBox="0 0 48 48"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.4"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  {name === 'lamp' && (
+    <>
+      {/* dīpa: flame above a shallow clay lamp on a short stand */}
+      <path d="M24 8c-3 4.5-4.5 7.5-4.5 10a4.5 4.5 0 0 0 9 0c0-2.5-1.5-5.5-4.5-10z" />
+      <path d="M24 16.5v3.5" />
+      <path d="M9 26h30c-1.5 5-7.5 8-15 8s-13.5-3-15-8z" />
+      <path d="M39 26l4-3" />
+      <path d="M24 34v5M17 41h14" />
+    </>
+  )}
+  {name === 'lotus' && (
+    <>
+      {/* a single lotus in side profile */}
+      <path d="M24 10c-4 5-5 12-5 16s2 7 5 8c3-1 5-4 5-8s-1-11-5-16z" />
+      <path d="M19 26c-3-4-7-6-11-6 0 7 6 13 16 14" />
+      <path d="M29 26c3-4 7-6 11-6 0 7-6 13-16 14" />
+      <path d="M12 38c4 1.5 8 2 12 2s8-.5 12-2" />
+    </>
+  )}
+  {name === 'flute' && (
+    <>
+      {/* veṇu: a plain bamboo flute with a hanging tassel */}
+      <path d="M6 30.5L40 14.5" stroke-width="3.2" />
+      <path d="M12.5 27.4l-1.6 -3.4M33.5 17.6l-1.6 -3.4" />
+      <path d="M8.5 29.3c-.5 4 .5 8 2.5 11M8.5 29.3c-2 3.5-2.5 7-2 10.5" />
+    </>
+  )}
+  {name === 'trident' && (
+    <>
+      {/* triśūla */}
+      <path d="M24 6v36" />
+      <path d="M24 6l-2.5 5M24 6l2.5 5" />
+      <path d="M13 9c0 7 4 11 11 11s11-4 11-11" />
+      <path d="M13 9l-1.5 3M35 9l1.5 3" />
+      <path d="M20 26h8" />
+    </>
+  )}
+  {name === 'sprig' && (
+    <>
+      {/* mañjarī: one stem with a few leaves and a single bud */}
+      <path d="M24 42V12" />
+      <path d="M24 12c-2.5-2-2.5-5 0-7 2.5 2 2.5 5 0 7z" />
+      <path d="M24 20c-4-1-7-4-7.5-7.5 4 .5 7 3.5 7.5 7.5z" />
+      <path d="M24 20c4-1 7-4 7.5-7.5-4 .5-7 3.5-7.5 7.5z" />
+      <path d="M24 30c-5-1-8.5-4.5-9-9 5 .5 8.5 4 9 9z" />
+      <path d="M24 30c5-1 8.5-4.5 9-9-5 .5-8.5 4-9 9z" />
+    </>
+  )}
+</svg>

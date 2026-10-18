@@ -1,0 +1,172 @@
+---
+// Tiro Devanagari Sanskrit, self-hosted (brief §7): never depends on Google being reachable.
+import '@fontsource/tiro-devanagari-sanskrit/400.css';
+import '@fontsource/tiro-devanagari-sanskrit/400-italic.css';
+import '../styles/themes.css';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Motif from '../components/Motif.astro';
+import ReaderMenu from '../components/ReaderMenu.astro';
+import { url } from '../lib/url';
+import { readers, DEFAULT_READER } from '../lib/readers';
+
+const readerKeys = readers.map((r) => r.key);
+
+interface Props {
+  title?: string;
+  description?: string;
+  theme?: string;
+}
+const { title, description = 'वागर्थसङ्गमः · a personal study archive of Sanskrit texts', theme = 'general' } =
+  Astro.props;
+const fullTitle = title ? `${title} · वागर्थसङ्गमः` : 'वागर्थसङ्गमः · Vāgartha-saṅgamaḥ';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Mono&family=Noto+Sans:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap"
+    />
+    <meta name="theme-color" content="#f5eedf" />
+    <!-- Soft cross-fade between pages (brief §5b). Falls back to normal navigation where unsupported. -->
+    <ClientRouter />
+    <script is:inline define:vars={{ readerKeys, defaultReader: DEFAULT_READER }}>
+      // Reader theme + light/dark, applied before first paint (brief §6e).
+      // Light/dark: a manual choice wins, otherwise follow the system. Theme: remembered per device.
+      (function () {
+        if (window.__themeInit) return;
+        window.__themeInit = true;
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var read = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+        var mode = function () { return read('mode') || (mq.matches ? 'dark' : 'light'); };
+        var reader = function () { var r = read('reader'); return readerKeys.indexOf(r) !== -1 ? r : defaultReader; };
+        var apply = function (root) {
+          root.setAttribute('data-mode', mode());
+          root.setAttribute('data-reader', reader());
+        };
+        apply(document.documentElement);
+        mq.addEventListener('change', function () { apply(document.documentElement); });
+        // Page-to-page navigation swaps <html> attributes; carry both across before paint.
+        document.addEventListener('astro:before-swap', function (e) { apply(e.newDocument.documentElement); });
+      })();
+    </script>
+  </head>
+  <body data-theme={theme}>
+    <header class="site-header">
+      <div class="wrap wrap-wide">
+        <a class="brand" href={url()} transition:name="site-title">
+          <span class="brand-deva" lang="sa">वागर्थसङ्गमः</span>
+          <span class="brand-iast">Vāgartha-saṅgamaḥ</span>
+        </a>
+        <div class="header-tools">
+          <a class="icon-link" href={url('dhatu-manjari/')} title="धातुमञ्जरी · Root index">
+            <Motif name="sprig" />
+            <span class="label"><span class="deva" lang="sa">धातुमञ्जरी</span><span class="en">Root index</span></span>
+          </a>
+          <ReaderMenu />
+          <button class="mode-toggle mode-toggle-header" type="button" aria-label="Toggle light and dark">
+            <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>
+            <svg class="i-lamp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-1.8 2.6-2.6 4.3-2.6 5.8a2.6 2.6 0 0 0 5.2 0c0-1.5-.8-3.2-2.6-5.8z" /><path d="M4 13h16c-.8 3-4 5-8 5s-7.2-2-8-5z" /><path d="M12 18v2.5M9 21h6" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="motif" style="width:28px;margin:0 auto 0.5rem"><Motif name="lamp" /></div>
+        <div class="deva" lang="sa">वागर्थाविव सम्पृक्तौ</div>
+        <div>united, as word and meaning are united</div>
+      </div>
+    </footer>
+    <style is:global>
+      html[data-mode='dark'] .mode-toggle .i-moon,
+      html:not([data-mode='dark']) .mode-toggle .i-lamp {
+        display: none;
+      }
+    </style>
+    <script is:inline data-astro-rerun>
+      (function () {
+        var root = document.documentElement;
+        var save = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+        // Light/dark toggles (in the header, and inside the theme menu)
+        document.querySelectorAll('.mode-toggle').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var next = root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-mode', next);
+            save('mode', next);
+          });
+        });
+        // Theme switcher
+        var menu = document.querySelector('.reader-menu');
+        var opts = [].slice.call(document.querySelectorAll('.reader-option'));
+        var mark = function () {
+          var cur = root.getAttribute('data-reader');
+          opts.forEach(function (o) { o.setAttribute('aria-checked', String(o.getAttribute('data-reader-key') === cur)); });
+        };
+        mark();
+        opts.forEach(function (o) {
+          o.addEventListener('click', function () {
+            var key = o.getAttribute('data-reader-key');
+            root.setAttribute('data-reader', key);
+            save('reader', key);
+            mark();
+          });
+        });
+        if (menu) {
+          // one outside-click handler per page (this script re-runs after navigation)
+          if (window.__menuOutside) document.removeEventListener('click', window.__menuOutside);
+          window.__menuOutside = function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; };
+          document.addEventListener('click', window.__menuOutside);
+          menu.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { menu.open = false; menu.querySelector('summary').focus(); }
+          });
+        }
+      })();
+    </script>
+    <script is:inline data-astro-rerun>
+      // Scroll reveal (brief §5b): verse cards and major sections fade/rise in once as they enter
+      // the viewport. Content is only ever hidden after this script has run, so it always shows
+      // without JS; reduced motion skips it entirely.
+      (function () {
+        if (window.__revealObs) window.__revealObs.disconnect();
+        if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var sel = [
+          '.bodhini .sec:not(.sec-verses):not(.sec-preliminaries)',
+          '.bodhini .verse-card',
+          '.related',
+          '.collection',
+          '.roots-link',
+          '.kind-group',
+          '.varna-group',
+        ].join(',');
+        var els = [].slice.call(document.querySelectorAll(sel));
+        var fold = window.innerHeight;
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            en.target.classList.add('is-in');
+            obs.unobserve(en.target);
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        window.__revealObs = obs;
+        els.forEach(function (el) {
+          // Already on screen: leave it to the entrance animation, never hide it.
+          if (el.getBoundingClientRect().top < fold) return;
+          el.classList.add('reveal');
+          obs.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

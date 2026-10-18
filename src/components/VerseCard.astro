@@ -1,0 +1,63 @@
+---
+// The verse card as a component, emitting the same markup and classes that
+// rehype-bodhini builds for study pages, so both look identical.
+interface Word {
+  word: string;
+  grammar: string;
+  meaning: string;
+  href?: string;
+}
+interface Props {
+  id?: string;
+  heading?: string;
+  pill?: string;
+  deva?: string;
+  iast?: string;
+  padaccheda?: string;
+  words?: Word[];
+  meaning?: string;
+  wordsOpen?: boolean;
+  /** Keep the word table below the verse text at every width (home hero only). */
+  stacked?: boolean;
+}
+const { id, heading, pill, deva, iast, padaccheda, words = [], meaning, wordsOpen = true, stacked = false } = Astro.props;
+---
+<article class="verse-card">
+  {heading && <h3 id={id}>{heading}</h3>}
+  <div class:list={['vc-top', words.length ? 'has-words' : 'no-words', { stacked }]}>
+  <div class="vc-text">
+  {pill && <p class="vc-pill"><span class="pill">{pill}</span></p>}
+  {deva && <p class="vc-deva" lang="sa">{deva}</p>}
+  {iast && <p class="vc-iast" lang="sa-Latn">{iast}</p>}
+  {padaccheda && <p class="vc-padaccheda"><span class="vc-label">Padaccheda · word split</span>{padaccheda}</p>}
+  {meaning && <div class="vc-block vc-meaning"><span class="vc-label">Meaning</span><p>{meaning}</p></div>}
+  </div>
+  {
+    words.length > 0 && (
+      <details class="vc-words" open={wordsOpen}>
+        <summary>
+          <span class="deva" lang="sa">पदशः</span>
+          <span class="muted">word by word</span>
+        </summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Word</th><th>Root / grammar</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              {words.map((w) => (
+                <tr>
+                  <td data-label="Word">{w.href ? <a href={w.href}>{w.word}</a> : w.word}</td>
+                  <td data-label="Root / grammar">{w.grammar}</td>
+                  <td data-label="Meaning">{w.meaning}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    )
+  }
+  </div>
+  <slot />
+</article>

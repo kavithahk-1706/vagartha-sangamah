@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Noto+Serif+Devanagari:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #ecebe7; --page-text: #1d1d1d; --page-muted: #5f5f5f; --page-line: #c9c7c1;
+    --deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', serif;
+    --h: 25; --cmul: 1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --page-bg: #101010; --page-text: #ececec; --page-muted: #9a9a9a; --page-line: #333; }
+  }
+  :root[data-theme="dark"] { --page-bg: #101010; --page-text: #ececec; --page-muted: #9a9a9a; --page-line: #333; }
+  body.noto { --deva: 'Noto Serif Devanagari', serif; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 20px 16px 48px; background: var(--page-bg); color: var(--page-text);
+         font-family: 'EB Garamond', Georgia, serif; font-size: 17px; line-height: 1.5; }
+  .wrap { max-width: 1440px; margin: 0 auto; }
+  h1 { font-size: 1.55rem; margin: 0 0 4px; font-weight: 600; }
+  .intro { color: var(--page-muted); margin: 0 0 14px; max-width: 75ch; }
+  .controls { display: grid; gap: 10px; margin-bottom: 20px; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .row > span { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--page-muted); min-width: 64px; }
+  .row button { font: inherit; font-size: .92rem; padding: 4px 12px; border-radius: 999px; cursor: pointer;
+                border: 1px solid var(--page-line); background: transparent; color: var(--page-text); }
+  .row button.on { background: var(--page-text); color: var(--page-bg); border-color: var(--page-text); }
+  .row button .dv { font-family: var(--deva); margin-right: 4px; }
+
+  .grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ================= base themed card ================= */
+  .t {
+    --accent: oklch(var(--L) calc(var(--C) * var(--cmul)) var(--h));
+    /* role colours: default to accent/decor; Kalamkārī overrides them */
+    --c-title: var(--accent); --c-head: var(--accent); --c-word: var(--accent);
+    --c-gram: var(--text);   --c-label: var(--decor); --c-real: var(--accent);
+    --c-guru: var(--accent); --c-laghu: var(--muted);
+    background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px; min-width: 0; position: relative; overflow: hidden;
+  }
+  .t::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--accent); }
+  .tname { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 10px; position: relative; }
+  .tname .dv { font-family: var(--deva); font-size: 1.15rem; color: var(--decor); }
+  .tname .en { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .site { text-align: center; position: relative; }
+  .site .dv { font-family: var(--deva); font-size: 2rem; line-height: 1.3; color: var(--c-title); }
+  .site .ia { font-style: italic; color: var(--muted); font-size: .95rem; }
+  .rule { height: 1px; border: 0; margin: 12px 0; background: linear-gradient(90deg, transparent, var(--decor), transparent); }
+  .sec { font-family: var(--deva); font-size: 1.2rem; color: var(--c-head); margin: 0 0 8px; }
+  .sec span { font-family: 'EB Garamond', serif; font-size: .95rem; color: var(--muted); font-style: italic; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; position: relative; }
+  .verse { text-align: center; font-family: var(--deva); font-size: 1.15rem; line-height: 1.85; }
+  .iastv { text-align: center; font-style: italic; color: var(--muted); font-size: .88rem; margin: 4px 0 8px; }
+  table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: .85rem; }
+  th, td { text-align: left; padding: 5px 4px; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; vertical-align: top; }
+  th { color: var(--c-label); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  td:nth-child(1) { font-style: italic; color: var(--c-word); }
+  td:nth-child(2) { color: var(--c-gram); }
+  .lbl { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--c-label); font-weight: 600; margin-top: 8px; }
+  .ins { margin: 2px 0 0; font-size: .92rem; }
+  .real { margin-top: 10px; padding: 8px 10px; border-left: 3px solid var(--c-real);
+          background: color-mix(in srgb, var(--c-real) 10%, transparent); border-radius: 0 8px 8px 0; font-style: italic; font-size: .92rem; }
+  .scan { display: flex; flex-wrap: wrap; gap: 3px 5px; margin-top: 10px; }
+  .syl { display: inline-flex; flex-direction: column; align-items: center; min-width: 1.9em; padding: 1px 3px; border-radius: 5px; background: var(--bg); font-size: .78rem; }
+  .syl i { font-style: normal; font-size: .64rem; color: var(--c-laghu); }
+  .syl.g i { color: var(--c-guru); font-weight: 700; }
+  .note { display: none; font-size: .85rem; color: var(--muted); font-style: italic; margin-top: 8px; }
+
+  /* ================= themes ================= */
+
+  /* --- Kalamkārī: light only, multicolour dye roles + printed band border --- */
+  .kal { --bg:#F4EEE1; --surface:#FBF7EE; --text:#1F1B18; --muted:#5E564C; --border:#DDD2BC; --decor:#B07E14; --L:.50; --C:.12; --th:78;
+         --indigo:#263A6B; --madder:#9E2B25; --myro:#B07E14; --leaf:#3E6B35; --iron:#1F1B18; }
+  .kal { --c-head: var(--indigo); --c-word: var(--madder); --c-gram: var(--leaf); --c-label: var(--myro);
+         --c-real: var(--madder); --c-guru: var(--indigo); --c-laghu: var(--madder); }
+  .kal .card { border: 0;
+    box-shadow: 0 0 0 1px var(--iron), 0 0 0 4px var(--surface), 0 0 0 5px var(--madder), 0 0 0 7px var(--surface), 0 0 0 8px var(--indigo); margin: 8px; }
+  .kal .rule { height: 3px; background: linear-gradient(90deg, var(--indigo) 0 25%, var(--madder) 25% 50%, var(--myro) 50% 75%, var(--leaf) 75% 100%); }
+  .kal .sec { border-bottom: 2px solid var(--madder); display: inline-block; padding-bottom: 2px; }
+
+  /* --- Paurṇamī: moon glow --- */
+  .pau { --bg:#EEF0F5; --surface:#F8F9FC; --text:#141A2E; --muted:#4F5872; --border:#D3D8E5; --decor:#7D8CAE; --L:.46; --C:.12; --th:255; }
+  .pau { background: radial-gradient(ellipse 70% 38% at 50% 0%, color-mix(in srgb, var(--decor) 22%, transparent), transparent 70%), var(--bg); }
+  .pau .site::before { content: ""; position: absolute; left: 50%; top: 50%; width: 140px; height: 140px; translate: -50% -50%;
+    border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--decor) 30%, transparent), transparent 70%); z-index: 0; }
+  .pau .site > * { position: relative; }
+  .pau .rule { background: linear-gradient(90deg, transparent, var(--decor), transparent); height: 1px; box-shadow: 0 0 6px var(--decor); }
+  .pau .card { box-shadow: 0 0 0 1px var(--border), 0 6px 24px -12px color-mix(in srgb, var(--decor) 60%, transparent); }
+
+  /* --- Tāḍapatra: ruled leaf, double margin, leaf-ended cards, ink headings --- */
+  .tada { --bg:#E8D9AE; --surface:#F0E4C0; --text:#1E1A16; --muted:#5A4E36; --border:#C9B47E; --decor:#6E521C; --L:.42; --C:.14; --th:28; }
+  .tada .card, .tada .real {
+    background-image: repeating-linear-gradient(to bottom, transparent 0 27px, color-mix(in srgb, var(--decor) 20%, transparent) 27px 28px);
+    border-left: 4px double var(--decor); border-radius: 4px 40px 40px 4px; }
+  .tada .real { border-left-width: 4px; }
+  .tada .sec { font-weight: 600; border-bottom: 1px solid var(--decor); display: inline-block; }
+  .tada .rule { background: var(--decor); height: 2px; margin: 12px 20%; }
+
+  /* --- Kuṅkuma: deeper base, tilaka bars --- */
+  .kum { --bg:#ECCFC6; --surface:#F6E3DD; --text:#280D0A; --muted:#6A3F38; --border:#D7A89C; --decor:#A01C14; --L:.42; --C:.17; --th:25; }
+  .kum .sec { border-left: 6px solid var(--decor); padding-left: 8px; }
+  .kum .card { border-top: 4px solid var(--decor); }
+  .kum .real { border-left-width: 6px; }
+  .kum .rule { height: 3px; background: linear-gradient(90deg, transparent, var(--decor), transparent); }
+
+  /* --- Vṛndā: deeper green, leaf-cut corners, vine rule --- */
+  .vrn { --bg:#D4E4C3; --surface:#E5EFD8; --text:#0F1F0D; --muted:#3E5236; --border:#A9C392; --decor:#2E6B28; --L:.42; --C:.13; --th:140; }
+  .vrn .card, .vrn .real { border-radius: 22px 3px 22px 3px; }
+  .vrn .rule { height: 10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%232E6B28' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x center; }
+  .vrn .sec { border-left: 3px solid var(--decor); padding-left: 8px; border-radius: 0 0 0 8px; }
+
+  /* ================= dark mode ================= */
+  .dark .pau  { --bg:#0B1124; --surface:#131C35; --text:#ECE8DA; --muted:#9AA3BD; --border:#24304F; --decor:#DCD6BE; --L:.80; --C:.10; }
+  .dark .tada { --bg:#1C1913; --surface:#262118; --text:#E8D9AE; --muted:#A89A76; --border:#3A3326; --decor:#C9A75A; --L:.74; --C:.12; }
+  .dark .kum  { --bg:#1E0B0A; --surface:#2A1210; --text:#F6E6E2; --muted:#C49A93; --border:#45201C; --decor:#E0503F; --L:.75; --C:.14; }
+  .dark .vrn  { --bg:#0A1A0E; --surface:#112617; --text:#E3F0DA; --muted:#97B18C; --border:#22402A; --decor:#6FCB63; --L:.80; --C:.13; }
+  .dark .vrn .rule { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%236FCB63' stroke-width='1.4'/%3E%3C/svg%3E"); }
+  /* Kalamkārī dark: dye colours on iron-black cloth */
+  .dark .kal { --bg:#16130F; --surface:#1F1B16; --text:#E6DCC8; --muted:#A69C8A; --border:#3A332A; --decor:#C9A04A; --L:.78; --C:.09;
+               --indigo:#8C9BC0; --madder:#D2704F; --myro:#C9A04A; --leaf:#A3B272; --iron:#BFB39C; }
+  /* Dark mode, all themes: deity accent muted and pulled toward an earthy olive so it sits calmly on dark grounds */
+  .dark .t { --accent: color-mix(in oklch, oklch(calc(var(--L) - .06) calc(var(--C) * var(--cmul) * .85) var(--h)) 82%, #8C8460); }
+  /* Option B: Kalamkārī hands over to Paurṇamī in dark mode */
+  .kal-b { display: none; }
+  .dark .kal-b { display: block; --bg:#0B1124; --surface:#131C35; --text:#ECE8DA; --muted:#9AA3BD; --border:#24304F; --decor:#DCD6BE; --L:.80; --C:.10;
+    background: radial-gradient(ellipse 70% 38% at 50% 0%, color-mix(in srgb, var(--decor) 22%, transparent), transparent 70%), var(--bg); }
+  .dark .kal-b .note { display: block; }
+
+  /* ================= dark-mode glows (one per theme) ================= */
+  /* Paurṇamī: cool moonlight from above */
+  .dark .pau { background: radial-gradient(ellipse 75% 40% at 50% 0%, rgba(220,214,190,.20), transparent 70%), var(--bg); }
+  .dark .pau .site .dv { text-shadow: 0 0 18px rgba(220,214,190,.35); }
+  /* Kalamkārī night: dyes bleeding softly from the corners */
+  .dark .kal { background:
+      radial-gradient(circle at 0% 0%, rgba(140,155,192,.10), transparent 42%),
+      radial-gradient(circle at 100% 0%, rgba(210,112,79,.10), transparent 42%),
+      radial-gradient(circle at 0% 100%, rgba(163,178,114,.08), transparent 42%),
+      radial-gradient(circle at 100% 100%, rgba(201,160,74,.09), transparent 42%), var(--bg); }
+  .dark .kal .site .dv { text-shadow: 0 0 16px color-mix(in srgb, var(--accent) 45%, transparent); }
+  .dark .kal .rule { box-shadow: 0 0 8px rgba(201,160,74,.25); opacity: .9; }
+  /* Tāḍapatra: an oil lamp (dīpa) glowing low beside the leaf */
+  .dark .tada { background: radial-gradient(ellipse 60% 45% at 50% 105%, rgba(240,170,70,.20), transparent 70%), var(--bg); }
+  .dark .tada .site .dv { text-shadow: 0 0 14px rgba(240,170,70,.40); }
+  .dark .tada .card { box-shadow: 0 10px 30px -14px rgba(240,170,70,.35); }
+  /* Kuṅkuma: ember warmth from the top-left */
+  .dark .kum { background: radial-gradient(ellipse 70% 50% at 0% 0%, rgba(224,80,63,.22), transparent 65%), var(--bg); }
+  .dark .kum .card { box-shadow: 0 -2px 18px -4px rgba(224,80,63,.45); }
+  .dark .kum .sec { text-shadow: 0 0 12px rgba(224,80,63,.35); }
+  /* Vṛndā: moonlight through a leaf canopy */
+  .dark .vrn { background: radial-gradient(ellipse 80% 45% at 50% 0%, rgba(111,203,99,.16), transparent 70%), var(--bg); }
+  .dark .vrn .rule { filter: drop-shadow(0 0 4px rgba(111,203,99,.6)); }
+  .dark .vrn .site .dv { text-shadow: 0 0 14px rgba(111,203,99,.30); }
+
+  body.d-general .t { --h: var(--th); }
+  .legend { margin-top: 22px; color: var(--page-muted); font-size: .95rem; max-width: 85ch; }
+</style>
+</head>
+<body class="d-devi">
+<div class="wrap">
+  <h1>Themes × deities, round 3</h1>
+  <p class="intro">Five themes, all with light and dark. Kalamkārī's night version uses muted, earthy dyes on iron-black cloth. In dark mode, every deity accent is muted and pulled slightly toward olive. Each theme now has a signature applied to <i>every</i> element, not just a border. The deity still sets the accent hue for the title and top band; in Kalamkārī the other roles use fixed dye colours.</p>
+
+  <div class="controls">
+    <div class="row" id="deity"><span>Deity</span></div>
+    <div class="row" id="mode"><span>Mode</span><button data-m="light" class="on">Light</button><button data-m="dark">Dark</button></div>
+    <div class="row" id="font"><span>Font</span><button data-f="tiro" class="on">Tiro Devanagari Sanskrit</button><button data-f="noto">Noto Serif Devanagari</button></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <p class="legend"><b>Dark-mode glows:</b> Paurṇamī has cool moonlight from above. Kalamkārī has the four dyes bleeding softly in from the corners. Tāḍapatra has a low oil-lamp glow beneath the leaf. Kuṅkuma has ember warmth from the top-left. Vṛndā has green moonlight through a canopy.<br><b>Signatures:</b> Kalamkārī uses multicolour dye roles (indigo headings, madder words, leaf-green grammar, myrobalan labels) with a printed band border and a four-dye rule. Paurṇamī has a moon-glow behind the title, a soft halo on cards and a silver rule. Tāḍapatra has ruled leaf lines, a double margin, leaf-ended cards and ink headings. Kuṅkuma has a deeper base and tilaka bars on headings and cards. Vṛndā has a deeper green, leaf-cut corners and a vine rule.</p>
+</div>
+
+<template id="sample">
+  <div class="tname"><span class="dv"></span><span class="en"></span></div>
+  <div class="site"><div class="dv">वागर्थसङ्गमः</div><div class="ia">Vāgartha-saṅgamaḥ</div></div>
+  <hr class="rule">
+  <h3 class="sec">अनुक्रमणिका <span>· Contents</span></h3>
+  <div class="card">
+    <div class="verse">दुर्गे स्मृता हरसि भीतिमशेषजन्तोः</div>
+    <div class="iastv">durge smṛtā harasi bhītim aśeṣajantoḥ</div>
+    <table>
+      <thead><tr><th>Word</th><th>Grammar</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>smṛtā</td><td>√smṛ · ppp.</td><td>when remembered</td></tr>
+        <tr><td>ārdra-cittā</td><td>√cit · bahuvrīhi</td><td>heart always melting</td></tr>
+      </tbody>
+    </table>
+    <div class="lbl">Insights</div>
+    <p class="ins">Two kinds of remembering, and both count. <em>Smṛtā</em> is the entire requirement.</p>
+    <div class="scan">
+      <span class="syl g">dur<i>G</i></span><span class="syl g">ge<i>G</i></span><span class="syl">smṛ<i>L</i></span><span class="syl g">tā<i>G</i></span><span class="syl">ha<i>L</i></span><span class="syl">ra<i>L</i></span><span class="syl">si<i>L</i></span><span class="syl g">bhī<i>G</i></span>
+    </div>
+  </div>
+  <div class="real">“she's devoted to removing the afflictions of the exact people who don't qualify for anything at all.”</div>
+  <div class="note">Option B: Kalamkārī has no dark mode, so readers on it see Paurṇamī at night.</div>
+</template>
+
+<script>
+  const THEMES = [
+    ['kal','कलमकारी','Kalamkārī'], ['pau','पौर्णमी','Paurṇamī'], ['tada','ताडपत्र','Tāḍapatra'],
+    ['kum','कुङ्कुम','Kuṅkuma'], ['vrn','वृन्दा','Vṛndā']
+  ];
+  const DEITIES = [
+    ['devi','देवी',25,1], ['krishna','कृष्ण',235,1], ['vishnu','विष्णु',268,1], ['shiva','शिव',235,.25],
+    ['ganesha','गणेश',48,1], ['lakshmi','लक्ष्मी',355,1], ['saraswati','सरस्वती',90,.4], ['general','सामान्य',null,1]
+  ];
+  const grid = document.getElementById('grid'), tpl = document.getElementById('sample');
+  THEMES.forEach(([cls, dv, en]) => {
+    const el = document.createElement('div'); el.className = 't ' + cls;
+    el.appendChild(tpl.content.cloneNode(true));
+    el.querySelector('.tname .dv').textContent = dv;
+    el.querySelector('.tname .en').textContent = en;
+    grid.appendChild(el);
+  });
+  const drow = document.getElementById('deity');
+  DEITIES.forEach(([key, dv, h, cm], i) => {
+    const b = document.createElement('button');
+    b.innerHTML = `<span class="dv">${dv}</span>${key}`;
+    if (i === 0) b.classList.add('on');
+    b.onclick = () => {
+      drow.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+      document.body.classList.toggle('d-general', h === null);
+      if (h !== null) document.documentElement.style.setProperty('--h', h);
+      document.documentElement.style.setProperty('--cmul', cm);
+    };
+    drow.appendChild(b);
+  });
+  document.querySelectorAll('#mode button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#mode button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+    grid.classList.toggle('dark', b.dataset.m === 'dark');
+  });
+  document.querySelectorAll('#font button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#font button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+    document.body.classList.toggle('noto', b.dataset.f === 'noto');
+  });
+</script>
+</body>
+</html>

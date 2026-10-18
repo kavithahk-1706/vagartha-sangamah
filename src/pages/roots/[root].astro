@@ -1,0 +1,21 @@
+---
+// The brief names root pages both /dhatu-manjari/<slug>/ (canonical) and /roots/<slug>/.
+// This keeps the /roots/ form working by redirecting to the canonical page.
+import { url } from '../../lib/url';
+import { aggregateRoots } from '../../lib/roots.mjs';
+
+export function getStaticPaths() {
+  return aggregateRoots().map((r) => ({ params: { root: r.slug } }));
+}
+const target = url(`dhatu-manjari/${Astro.params.root}/`);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>धातुमञ्जरी</title>
+  </head>
+  <body><a href={target}>{target}</a></body>
+</html>

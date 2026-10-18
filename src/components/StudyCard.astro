@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { url, formatDate, studyTitleTransition } from '../lib/url';
+interface Props {
+  study: CollectionEntry<'studies'>;
+}
+const { data, id } = Astro.props.study;
+const tn = studyTitleTransition(id);
+---
+<a class="study-card" href={url(`${id}/`)} data-theme={data.theme}>
+  {data.title_devanagari && <span class="deva" lang="sa" transition:name={tn}>{data.title_devanagari}</span>}
+  <span class="iast" transition:name={data.title_devanagari ? undefined : tn}>{data.title}</span>
+  <p class="essence">{data.essence}</p>
+  <span class="meta">
+    {data.verses ? `${data.verses} verses · ` : ''}<time datetime={data.studied_on.toISOString().slice(0, 10)}>{formatDate(data.studied_on)}</time>
+  </span>
+</a>

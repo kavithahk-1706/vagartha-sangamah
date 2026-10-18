@@ -1,0 +1,124 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Motif from '../components/Motif.astro';
+import TempleRule from '../components/TempleRule.astro';
+import VerseCard from '../components/VerseCard.astro';
+import StudyCard from '../components/StudyCard.astro';
+import { url } from '../lib/url';
+import { iastSegments } from '../lib/iast';
+import { collectionKey, collectionMeta, collectionOrder } from '../lib/collections';
+
+const studies = await getCollection('studies');
+
+// Preface excerpt: the first paragraph of content/pages/prastavana.md, exactly as written.
+const preface = await getEntry('pages', 'prastavana');
+const firstPara = (preface?.body ?? '').split(/\r?\n\s*\r?\n/).map((p) => p.trim()).find(Boolean) ?? '';
+
+// Group by collection folder, newest first within each.
+const groups = new Map<string, typeof studies>();
+for (const s of studies) {
+  const key = collectionKey(s.id);
+  if (!groups.has(key)) groups.set(key, []);
+  groups.get(key)!.push(s);
+}
+for (const list of groups.values()) list.sort((a, b) => +b.data.studied_on - +a.data.studied_on);
+const keys = [...groups.keys()].sort((a, b) => {
+  const ia = collectionOrder.indexOf(a), ib = collectionOrder.indexOf(b);
+  if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  return a.localeCompare(b);
+});
+
+const words = [
+  { word: 'vāgarthau', grammar: 'dual, vāk + artha', meaning: 'word and meaning' },
+  { word: 'iva', grammar: 'particle', meaning: 'like, as' },
+  { word: 'saṃpṛktau', grammar: 'ppp. of sam + √pṛc, dual', meaning: 'united, fused' },
+  { word: 'vāgartha-pratipattaye', grammar: 'dative', meaning: 'for the understanding of word and meaning' },
+  { word: 'jagataḥ', grammar: 'genitive sg. of jagat', meaning: 'of the world' },
+  { word: 'pitarau', grammar: 'dual of pitṛ', meaning: 'the two parents' },
+  { word: 'vande', grammar: '1st sg. present (ātmanepada), √vand', meaning: 'I bow, I salute' },
+  { word: 'pārvatī-parameśvarau', grammar: 'dual', meaning: 'Pārvatī and Parameśvara' },
+];
+---
+<Base theme="general">
+  <section class="hero">
+    <div class="wrap">
+      <div class="motif"><Motif name="lamp" /></div>
+      <h1 lang="sa">वागर्थसङ्गमः</h1>
+      <p class="site-iast">Vāgartha-saṅgamaḥ</p>
+      <p class="gloss">The confluence of word and meaning</p>
+
+      <blockquote class="hero-verse">
+        <p class="deva" lang="sa">{'वागर्थाविव सम्पृक्तौ वागर्थप्रतिपत्तये।\nजगतः पितरौ वन्दे पार्वतीपरमेश्वरौ॥'}</p>
+        <p class="iast" lang="sa-Latn">{'vāgarthāv iva saṃpṛktau vāgarthapratipattaye\njagataḥ pitarau vande pārvatīparameśvarau'}</p>
+        <p class="english">
+          So that I may grasp words and their meanings, I bow to the parents of the world, Pārvatī and Parameśvara, who are eternally united with one another, the way a word is with its meaning.
+        </p>
+        <footer class="cite">— Kālidāsa, Raghuvaṃśa 1.1</footer>
+      </blockquote>
+
+      <div class="padashah-wrap">
+        <details class="padashah">
+          <summary>
+            <span class="btn"><span lang="sa">पदशः</span> · word by word <span class="arrow" aria-hidden="true">→</span></span>
+            <span class="caption">Tap to see the word-by-word breakdown of this śloka.</span>
+          </summary>
+          <VerseCard
+            pill="Raghuvaṃśa 1.1 · anuṣṭup"
+            padaccheda="vāgarthau | iva | saṃpṛktau | vāgartha-pratipattaye | jagataḥ | pitarau | vande | pārvatī-parameśvarau"
+            words={words}
+            stacked
+          />
+        </details>
+      </div>
+    </div>
+  </section>
+
+  {
+    firstPara && (
+      <section class="wrap letter letter-excerpt" aria-labelledby="preface-head">
+        <h2 id="preface-head" class="letter-head">
+          <span lang="sa">प्रस्तावना</span> · <span lang="sa-Latn">Prastāvanā</span> · Preface
+        </h2>
+        <p class="letter-quote">“{iastSegments(firstPara).map((seg) => (seg.sa ? <span lang="sa-Latn">{seg.text}</span> : seg.text))}”</p>
+        <p class="letter-more">
+          <a href={url('prastavana/')}><span lang="sa">पूर्णं पठतु</span> · read in full →</a>
+        </p>
+      </section>
+    )
+  }
+
+  <div class="wrap wrap-wide">
+    {
+      keys.map((key) => {
+        const list = groups.get(key)!;
+        const meta = collectionMeta[key];
+        return (
+          <section class="collection" id={key}>
+            <div class="collection-head">
+              <h2 lang="sa">{meta?.deva ?? list[0].data.collection}</h2>
+              {meta && <span class="iast">{meta.iast}</span>}
+              {meta && <span class="gloss">{meta.en}</span>}
+            </div>
+            <div class="card-grid">
+              {list.map((s) => (
+                <StudyCard study={s} />
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
+
+    <a class="roots-link" href={url('dhatu-manjari/')}>
+      <Motif name="sprig" />
+      <span>
+        <span class="deva" lang="sa">धातुमञ्जरी</span>
+        <span class="iast">Dhātu-mañjarī</span>
+        <span class="gloss">Root index: every verbal root met so far, traced back to its verse</span>
+      </span>
+    </a>
+
+    <TempleRule motif="lotus" />
+  </div>
+</Base>

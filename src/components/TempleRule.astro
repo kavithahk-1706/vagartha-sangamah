@@ -1,0 +1,8 @@
+---
+import Motif, { type MotifName } from './Motif.astro';
+interface Props {
+  motif?: MotifName;
+}
+const { motif = 'lotus' } = Astro.props;
+---
+<div class="temple-rule" role="separator"><Motif name={motif} /></div>

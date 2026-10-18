@@ -1,0 +1,285 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Motif from '../components/Motif.astro';
+import TempleRule from '../components/TempleRule.astro';
+import { url, formatDate, studyTitleTransition } from '../lib/url';
+import { collectionKey } from '../lib/collections';
+import { motifFor } from '../lib/themes';
+import { loadRootFiles, iastToSlug } from '../lib/roots.mjs';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('studies');
+  return studies.map((study) => ({ params: { slug: study.id }, props: { study, studies } }));
+}
+
+interface Props {
+  study: CollectionEntry<'studies'>;
+  studies: CollectionEntry<'studies'>[];
+}
+const { study, studies } = Astro.props;
+const { data } = study;
+const { Content, headings } = await render(study);
+
+// Contents: sections (h2) with their verse cards (h3) nested beneath.
+type Toc = { slug: string; text: string; children: { slug: string; text: string }[] };
+const toc: Toc[] = [];
+for (const h of headings) {
+  if (h.depth === 2) toc.push({ slug: h.slug, text: h.text, children: [] });
+  else if (h.depth === 3 && toc.length) toc.at(-1)!.children.push({ slug: h.slug, text: h.text });
+}
+
+// Right rail: the roots met in each verse, keyed by anchor (p1…, v1…).
+type RootRef = { slug: string; root: string; root_devanagari?: string; sense?: string };
+const rootsByAnchor = new Map<string, RootRef[]>();
+for (const f of loadRootFiles().filter((f: any) => f.study === study.id)) {
+  for (const e of f.entries) {
+    const slug = e.slug || iastToSlug(e.root || '');
+    if (!e.anchor || !slug) continue;
+    const list = rootsByAnchor.get(e.anchor) ?? [];
+    if (!list.some((r) => r.slug === slug)) list.push({ slug, root: e.root, root_devanagari: e.root_devanagari, sense: e.sense });
+    rootsByAnchor.set(e.anchor, list);
+  }
+}
+
+// Prev / next within the collection, in study order (oldest → newest).
+const siblings = studies
+  .filter((s) => collectionKey(s.id) === collectionKey(study.id))
+  .sort((a, b) => +a.data.studied_on - +b.data.studied_on);
+const i = siblings.findIndex((s) => s.id === study.id);
+const prev = siblings[i - 1];
+const next = siblings[i + 1];
+const related = data.related
+  .map((slug) => studies.find((s) => s.id === slug))
+  .filter((s): s is CollectionEntry<'studies'> => Boolean(s));
+const motif = motifFor(data.theme);
+const isoDate = data.studied_on.toISOString().slice(0, 10);
+---
+<Base title={data.title} description={data.essence} theme={data.theme}>
+  <header class="band">
+    <div class="wrap wrap-wide">
+      <div class="motif"><Motif name={motif} /></div>
+      <p class="eyebrow"><span lang="sa">बोधिनी</span> · Study notes</p>
+      <h1 lang="sa" transition:name={studyTitleTransition(study.id)}>{data.title_devanagari ?? data.title}</h1>
+      {data.title_devanagari && <p class="title-iast">{data.title}</p>}
+      {
+        data.text_name && (
+          <p class="text-name">
+            {data.text_name_devanagari && <span class="deva" lang="sa">{data.text_name_devanagari}</span>}
+            {data.text_name_devanagari && ' · '}
+            <em>{data.text_name}</em>
+          </p>
+        )
+      }
+      <p class="essence">{data.essence}</p>
+      {data.source && <p class="source">{data.source}</p>}
+      <ul class="pills">
+        <li class="pill">{data.collection}</li>
+        {data.verses && <li class="pill">{data.verses} verses</li>}
+        {data.metres.map((m) => <li class="pill">{m}</li>)}
+        <li class="pill"><time datetime={isoDate}>{formatDate(data.studied_on)}</time></li>
+      </ul>
+      {
+        data.image && (
+          <figure>
+            <img src={url(data.image.src)} alt={data.image.alt} loading="lazy" />
+            <figcaption>{data.image.credit}</figcaption>
+          </figure>
+        )
+      }
+    </div>
+  </header>
+
+  <div class="study-layout">
+    <details class="toc rail-left" open>
+      <summary><span lang="sa">अनुक्रमणिका</span> · Contents</summary>
+      <nav aria-label="Contents">
+        <ol>
+          {
+            toc.map((s) => (
+              <li>
+                <a href={`#${s.slug}`}>{s.text}</a>
+                {s.children.length > 0 && (
+                  <ol class="toc-verses">
+                    {s.children.map((c) => (
+                      <li>
+                        <a href={`#${c.slug}`} data-spy={c.slug}>{c.text}</a>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </details>
+
+    <article class="bodhini">
+      <Content />
+
+      <TempleRule motif={motif} />
+
+      {
+        (prev || next) && (
+          <nav class="study-nav" aria-label="Within this collection">
+            {prev && (
+              <a class="prev" href={url(`${prev.id}/`)}>
+                <span class="dir">← <span lang="sa">पूर्वम्</span> · Previous</span>
+                <span class="deva" lang="sa">{prev.data.title_devanagari ?? prev.data.title}</span>
+              </a>
+            )}
+            {next && (
+              <a class="next" href={url(`${next.id}/`)}>
+                <span class="dir"><span lang="sa">उत्तरम्</span> · Next →</span>
+                <span class="deva" lang="sa">{next.data.title_devanagari ?? next.data.title}</span>
+              </a>
+            )}
+          </nav>
+        )
+      }
+      {
+        related.length > 0 && (
+          <section class="related">
+            <h2><span lang="sa">सम्बद्धाः</span> · Related studies</h2>
+            <div class="card-grid">
+              {related.map((r) => (
+                <a class="study-card" href={url(`${r.id}/`)} data-theme={r.data.theme}>
+                  {r.data.title_devanagari && <span class="deva" lang="sa">{r.data.title_devanagari}</span>}
+                  <span class="iast">{r.data.title}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </article>
+
+    <aside class="rail-right" aria-label="Quick context">
+      <div class="rail-block">
+        <h2 class="rail-head"><span lang="sa">विवरणम्</span> · About</h2>
+        <ul class="pills">
+          <li class="pill">{data.collection}</li>
+          {data.verses && <li class="pill">{data.verses} verses</li>}
+          {data.metres.map((m) => <li class="pill">{m}</li>)}
+          <li class="pill"><time datetime={isoDate}>{formatDate(data.studied_on)}</time></li>
+        </ul>
+      </div>
+      <div class="rail-block">
+        <h2 class="rail-head"><span lang="sa">धातवः</span> · Roots in this verse</h2>
+        <p class="rail-current" data-rail-current></p>
+        {
+          [...rootsByAnchor.entries()].map(([anchor, list]) => (
+            <ul class="rail-roots" data-roots-for={anchor} hidden>
+              {list.map((r) => (
+                <li>
+                  <a href={url(`dhatu-manjari/${r.slug}/`)}>
+                    {r.root_devanagari && <span class="deva" lang="sa">{r.root_devanagari}</span>}
+                    <span class="iast">{r.root}</span>
+                  </a>
+                  {r.sense && <span class="sense">{r.sense}</span>}
+                </li>
+              ))}
+            </ul>
+          ))
+        }
+        <p class="rail-empty" data-roots-empty>Scroll to a verse to see its roots.</p>
+        <a class="rail-more" href={url('dhatu-manjari/')}><span lang="sa">धातुमञ्जरी</span> · Root index →</a>
+      </div>
+      {
+        (prev || next) && (
+          <div class="rail-block">
+            <h2 class="rail-head"><span lang="sa">क्रमः</span> · In this collection</h2>
+            {prev && (
+              <a class="rail-nav" href={url(`${prev.id}/`)}>
+                ← <span lang="sa">{prev.data.title_devanagari ?? prev.data.title}</span>
+              </a>
+            )}
+            {next && (
+              <a class="rail-nav" href={url(`${next.id}/`)}>
+                <span lang="sa">{next.data.title_devanagari ?? next.data.title}</span> →
+              </a>
+            )}
+          </div>
+        )
+      }
+    </aside>
+  </div>
+
+  <script is:inline data-astro-rerun>
+    (function () {
+      // Re-runs after every page-to-page navigation; drop the previous page's listeners first.
+      if (window.__studyCleanup) window.__studyCleanup();
+      var cleanups = [];
+      window.__studyCleanup = function () {
+        cleanups.forEach(function (f) { f(); });
+        window.__studyCleanup = null;
+      };
+      document.addEventListener('astro:before-swap', function () {
+        if (window.__studyCleanup) window.__studyCleanup();
+      }, { once: true });
+
+      // Phones (<640px): word tables start collapsed. Below 1024px the contents list starts collapsed.
+      var phone = window.matchMedia('(max-width: 639px)');
+      var narrow = window.matchMedia('(max-width: 1023px)');
+      if (phone.matches) {
+        document.querySelectorAll('.bodhini details.vc-words').forEach(function (d) { d.open = false; });
+      }
+      var toc = document.querySelector('details.toc');
+      if (narrow.matches) toc.open = false;
+      // Crossing 1024px later (resize, rotation): open the rail on wide screens, fold it on narrow ones.
+      var onNarrow = function (e) { toc.open = !e.matches; };
+      narrow.addEventListener('change', onNarrow);
+      cleanups.push(function () { narrow.removeEventListener('change', onNarrow); });
+      toc.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { if (narrow.matches) toc.open = false; });
+      });
+
+      // Scroll-spy: highlight the verse currently being read (#p…, #v…) in the contents,
+      // and show its roots in the right rail.
+      var cards = [].slice.call(document.querySelectorAll('.verse-card > h3[id]'));
+      if (!cards.length) return;
+      var links = {};
+      document.querySelectorAll('[data-spy]').forEach(function (a) { links[a.getAttribute('data-spy')] = a; });
+      var current = null;
+      var label = document.querySelector('[data-rail-current]');
+      function activate(id) {
+        if (id === current) return;
+        current = id;
+        Object.keys(links).forEach(function (k) {
+          if (k === id) links[k].setAttribute('aria-current', 'true');
+          else links[k].removeAttribute('aria-current');
+        });
+        var any = false;
+        document.querySelectorAll('[data-roots-for]').forEach(function (ul) {
+          var on = ul.getAttribute('data-roots-for') === id;
+          ul.hidden = !on;
+          if (on) any = true;
+        });
+        var empty = document.querySelector('[data-roots-empty]');
+        if (empty) {
+          empty.hidden = any;
+          empty.textContent = id ? 'No roots recorded for this verse.' : 'Scroll to a verse to see its roots.';
+        }
+        if (label) label.textContent = id && links[id] ? links[id].textContent : '';
+      }
+      function onScroll() {
+        var line = window.innerHeight * 0.35;
+        var id = null;
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i].parentElement.getBoundingClientRect();
+          if (card.top <= line && card.bottom > 0) id = cards[i].id;
+        }
+        activate(id);
+      }
+      // A handful of rect reads per scroll is cheap; no rAF so it also runs while the tab isn't painting.
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      cleanups.push(function () {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      });
+      onScroll();
+    })();
+  </script>
+</Base>

@@ -1,0 +1,192 @@
+/*
+  Theming (docs/site-brief.md §6): reader themes × deity accents.
+  "The deity decides the hue, the theme decides the mood."
+
+  Layer 1 — reader theme, on <html data-reader="…" data-mode="light|dark">:
+    surfaces, text, borders, decor, signature, and the accent's lightness --L / chroma --C.
+  Layer 2 — deity accent, from frontmatter `theme:` → [data-theme="…"] on <body> and on tinted cards:
+    only the hue --h and a chroma multiplier --cmul. `general` falls back to the reader's own --th.
+
+  CSS resolves var() where a property is declared, so everything derived from the accent is declared
+  on :root AND on every [data-theme] element (the block marked DERIVED below).
+  Adding a deity = one hue row. Adding a reader theme = one light + one dark token block.
+*/
+
+/* ───────── Deity hues (§6a) ───────── */
+:root,
+[data-theme='general'] {
+  --h: var(--th);
+  --cmul: 1;
+}
+[data-theme='devi'] { --h: 25; --cmul: 1; }
+[data-theme='krishna'] { --h: 235; --cmul: 1; }
+[data-theme='vishnu'] { --h: 268; --cmul: 1; }
+[data-theme='shiva'] { --h: 235; --cmul: 0.25; }
+[data-theme='ganesha'] { --h: 48; --cmul: 1; }
+[data-theme='lakshmi'] { --h: 355; --cmul: 1; }
+[data-theme='saraswati'] { --h: 90; --cmul: 0.4; }
+
+/* ───────── Reader themes (§6b): light ───────── */
+/* Kalamkārī is the default (also used when no data-reader is set) */
+:root,
+:root[data-reader='kalamkari'] {
+  --bg: #f4eee1;
+  --surface: #fbf7ee;
+  --text: #1f1b18;
+  --muted: #5e564c;
+  --border: #ddd2bc;
+  --decor: #b07e14;
+  --L: 0.5;
+  --C: 0.12;
+  --th: 78;
+}
+/* Kalamkārī's fixed dye roles, regardless of deity (§6c). Scoped so other themes never inherit them. */
+:root:not([data-reader]),
+:root[data-reader='kalamkari'] {
+  --indigo: #263a6b;
+  --madder: #9e2b25;
+  --myro: #8a6310; /* myrobalan, deepened from #B07E14 for 4.5:1 label text */
+  --leaf: #3e6b35;
+  --iron: #1f1b18;
+  --role-head: var(--indigo);
+  --role-word: var(--madder);
+  --role-gram: var(--leaf);
+  --role-label: var(--myro);
+  --role-real: var(--madder);
+  --role-guru: var(--indigo);
+  --role-laghu: var(--madder);
+  --role-underline: var(--madder);
+}
+:root[data-reader='paurnami'] {
+  --bg: #eef0f5;
+  --surface: #f8f9fc;
+  --text: #141a2e;
+  --muted: #4f5872;
+  --border: #d3d8e5;
+  --decor: #7d8cae;
+  --L: 0.46;
+  --C: 0.12;
+  --th: 255;
+  --role-label: #56658a; /* silver-blue, deepened for label contrast */
+}
+:root[data-reader='tadapatra'] {
+  --bg: #e8d9ae;
+  --surface: #f0e4c0;
+  --text: #1e1a16;
+  --muted: #5a4e36;
+  --border: #c9b47e;
+  --decor: #6e521c;
+  --L: 0.42;
+  --C: 0.14;
+  --th: 28;
+}
+:root[data-reader='kunkuma'] {
+  --bg: #eccfc6;
+  --surface: #f6e3dd;
+  --text: #280d0a;
+  --muted: #6a3f38;
+  --border: #d7a89c;
+  --decor: #a01c14;
+  --L: 0.42;
+  --C: 0.17;
+  --th: 25;
+}
+:root[data-reader='vrnda'] {
+  --bg: #d4e4c3;
+  --surface: #e5efd8;
+  --text: #0f1f0d;
+  --muted: #3e5236;
+  --border: #a9c392;
+  --decor: #2e6b28;
+  --L: 0.42;
+  --C: 0.13;
+  --th: 140;
+}
+
+/* ───────── Reader themes (§6b): dark ───────── */
+:root[data-mode='dark'],
+:root[data-mode='dark'][data-reader='kalamkari'] {
+  --bg: #16130f;
+  --surface: #1f1b16;
+  --text: #e6dcc8;
+  --muted: #a69c8a;
+  --border: #3a332a;
+  --decor: #c9a04a;
+  --L: 0.78;
+  --C: 0.09;
+  --indigo: #8c9bc0;
+  --madder: #d2704f;
+  --myro: #c9a04a;
+  --leaf: #a3b272;
+  --iron: #bfb39c;
+}
+:root[data-mode='dark'][data-reader='paurnami'] {
+  --bg: #0b1124;
+  --surface: #131c35;
+  --text: #ece8da;
+  --muted: #9aa3bd;
+  --border: #24304f;
+  --decor: #dcd6be;
+  --L: 0.8;
+  --C: 0.1;
+  --role-label: #c9c3ab;
+}
+:root[data-mode='dark'][data-reader='tadapatra'] {
+  --bg: #1c1913;
+  --surface: #262118;
+  --text: #e8d9ae;
+  --muted: #a89a76;
+  --border: #3a3326;
+  --decor: #c9a75a;
+  --L: 0.74;
+  --C: 0.12;
+}
+:root[data-mode='dark'][data-reader='kunkuma'] {
+  --bg: #1e0b0a;
+  --surface: #2a1210;
+  --text: #f6e6e2;
+  --muted: #c49a93;
+  --border: #45201c;
+  --decor: #e0503f;
+  --L: 0.75;
+  --C: 0.14;
+}
+:root[data-mode='dark'][data-reader='vrnda'] {
+  --bg: #0a1a0e;
+  --surface: #112617;
+  --text: #e3f0da;
+  --muted: #97b18c;
+  --border: #22402a;
+  --decor: #6fcb63;
+  --L: 0.8;
+  --C: 0.13;
+}
+
+/* ───────── DERIVED: accent and roles (re-declared wherever the deity hue changes) ───────── */
+:root,
+[data-theme] {
+  --accent: oklch(var(--L) calc(var(--C) * var(--cmul)) var(--h));
+  --c-title: var(--accent);
+  --c-head: var(--role-head, var(--accent));
+  --c-word: var(--role-word, var(--accent));
+  --c-gram: var(--role-gram, var(--text));
+  --c-label: var(--role-label, var(--decor));
+  --c-real: var(--role-real, var(--accent));
+  --c-guru: var(--role-guru, var(--accent));
+  --c-laghu: var(--role-laghu, var(--muted));
+  /* older names still used across the stylesheet */
+  --accent-2: var(--c-label);
+  --gradient-start: color-mix(in oklch, var(--accent) 9%, var(--surface));
+  --gradient-end: color-mix(in oklch, var(--decor) 12%, var(--bg));
+}
+/* Dark mode, all themes: muted and pulled toward earth so accents sit like dye on cloth */
+:root[data-mode='dark'],
+:root[data-mode='dark'] [data-theme] {
+  --accent: color-mix(in oklch, oklch(calc(var(--L) - 0.06) calc(var(--C) * var(--cmul) * 0.85) var(--h)) 82%, #8c8460);
+}
+
+/* Home hero only: a soft Śiva-Śakti wash (ash + kumkum) over the reader theme */
+.hero {
+  --hero-ash: color-mix(in oklch, var(--muted) 14%, var(--bg));
+  --hero-kumkum: color-mix(in oklch, oklch(0.6 0.15 25) 14%, var(--bg));
+}
