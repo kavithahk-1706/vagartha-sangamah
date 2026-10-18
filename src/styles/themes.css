@@ -38,7 +38,7 @@
   --decor: #b07e14;
   --L: 0.5;
   --C: 0.12;
-  --th: 78;
+  --th: 28; /* madder red: the site title on non-deity pages */
 }
 /* Kalamkārī's fixed dye roles, regardless of deity (§6c). Scoped so other themes never inherit them. */
 :root:not([data-reader]),

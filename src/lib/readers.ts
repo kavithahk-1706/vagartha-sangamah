@@ -15,8 +15,8 @@ export const readers: Reader[] = [
     key: 'kalamkari',
     deva: 'कलमकारी',
     iast: 'Kalamkārī',
-    light: { bg: '#F4EEE1', surface: '#FBF7EE', decor: '#B07E14', accent: 'oklch(0.50 0.12 78)' },
-    dark: { bg: '#16130F', surface: '#1F1B16', decor: '#C9A04A', accent: 'oklch(0.72 0.077 78)' },
+    light: { bg: '#F4EEE1', surface: '#FBF7EE', decor: '#B07E14', accent: 'oklch(0.50 0.12 28)' },
+    dark: { bg: '#16130F', surface: '#1F1B16', decor: '#C9A04A', accent: 'oklch(0.72 0.077 28)' },
   },
   {
     key: 'paurnami',
