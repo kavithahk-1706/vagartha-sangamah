@@ -207,7 +207,7 @@ Adding a deity later = one new row (hue + chroma multiplier). Nothing else chang
 
 | key | Name | Light | Dark | `--th` (general hue) |
 |---|---|---|---|---|
-| `kalamkari` | कलमकारी · Kalamkārī | cotton `#F4EEE1`, surface `#FBF7EE`, text iron-black `#1F1B18`, muted `#5E564C`, border `#DDD2BC`, decor myrobalan `#B07E14`; L .50 C .12 | iron-black cloth `#16130F`, surface `#1F1B16`, text `#E6DCC8`, muted `#A69C8A`, border `#3A332A`, decor `#C9A04A`; L .78 C .09 | 78 (**gold**: the site title is myrobalan gold, never blue) |
+| `kalamkari` | कलमकारी · Kalamkārī | cotton `#F4EEE1`, surface `#FBF7EE`, text iron-black `#1F1B18`, muted `#5E564C`, border `#DDD2BC`, decor myrobalan `#B07E14`; L .50 C .12 | iron-black cloth `#16130F`, surface `#1F1B16`, text `#E6DCC8`, muted `#A69C8A`, border `#3A332A`, decor `#C9A04A`; L .78 C .09 | 28 (**madder red**: the site title is madder gold, never blue) |
 | `paurnami` | पौर्णमी · Paurṇamī | `#EEF0F5` / `#F8F9FC`, text `#141A2E`, muted `#4F5872`, border `#D3D8E5`, decor silver-blue `#7D8CAE`; L .46 C .12 | `#0B1124` / `#131C35`, text `#ECE8DA`, muted `#9AA3BD`, border `#24304F`, decor moonlight `#DCD6BE`; L .80 C .10 | 255 |
 | `tadapatra` | ताडपत्र · Tāḍapatra | palm-leaf `#E8D9AE` / `#F0E4C0`, text soot `#1E1A16`, muted `#5A4E36`, border `#C9B47E`, decor `#6E521C`; L .42 C .14 | `#1C1913` / `#262118`, text `#E8D9AE`, muted `#A89A76`, border `#3A3326`, decor `#C9A75A`; L .74 C .12 | 28 |
 | `kunkuma` | कुङ्कुम · Kuṅkuma | `#ECCFC6` / `#F6E3DD`, text `#280D0A`, muted `#6A3F38`, border `#D7A89C`, decor `#A01C14`; L .42 C .17 | `#1E0B0A` / `#2A1210`, text `#F6E6E2`, muted `#C49A93`, border `#45201C`, decor `#E0503F`; L .75 C .14 | 25 |
