@@ -1686,37 +1686,34 @@ body {
 }
 
 /* ── Kalamkārī: dye roles, printed band border, four-dye rule, madder underline ── */
+/* Printed band border: two fine rings, madder inside and indigo outside, with a narrow gap */
 :root[data-reader='kalamkari'] :is(.verse-card, .study-card, .occ, .roots-link, .study-nav a) {
   border-color: transparent;
   box-shadow:
-    0 0 0 1px var(--iron),
-    0 0 0 4px var(--surface),
-    0 0 0 5px var(--madder),
-    0 0 0 7px var(--surface),
-    0 0 0 8px var(--indigo);
+    0 0 0 0.75px var(--madder),
+    0 0 0 2.25px var(--surface),
+    0 0 0 3px var(--indigo);
 }
 :root[data-reader='kalamkari'] :is(.study-card, .roots-link, .study-nav a):hover {
   box-shadow:
-    0 0 0 1px var(--iron),
-    0 0 0 4px var(--surface),
-    0 0 0 5px var(--madder),
-    0 0 0 7px var(--surface),
-    0 0 0 8px var(--indigo),
+    0 0 0 0.75px var(--madder),
+    0 0 0 2.25px var(--surface),
+    0 0 0 3px var(--indigo),
     0 14px 28px -18px var(--iron);
 }
-/* room for the 8px rings */
+/* room for the 3px rings */
 :root[data-reader='kalamkari'] .card-grid,
 :root[data-reader='kalamkari'] .study-nav {
-  gap: 24px;
+  gap: 18px;
 }
 :root[data-reader='kalamkari'] .kind-items {
-  gap: 20px;
+  gap: 16px;
 }
 :root[data-reader='kalamkari'] .occ {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 :root[data-reader='kalamkari'] .card-grid {
-  padding: 8px;
+  padding: 3px;
 }
 :root[data-reader='kalamkari'] .temple-rule::before,
 :root[data-reader='kalamkari'] .temple-rule::after {
