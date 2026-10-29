@@ -80,6 +80,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **Reading notes:** Kavitha's first summary ("he's asking her to explain properly what the solution is for kārya-siddhi in Kali-yuga") was correct, but it skipped the epithets. They matter, because they give the reason for asking her.
 
+**बोधाः:** [9](#r9)
+
 ### Devī's answer {#p2}
 *Framing dialogue · Metre: anuṣṭup*
 
@@ -114,6 +116,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 - **She gives more than he asked for.** He asked for *kārya-siddhi*, success in tasks. She answers with *sarva-iṣṭa-sādhana*, the means to every desire.
 - **The reason is sneha, affection.** It isn't formality and it isn't a reward for tapas.
 - **The hymn she reveals praises herself.** The *mayā … prakāśyate* construction makes it sound like something hidden being lit up, a secret being opened.
+
+**बोधाः:** [9](#r9)
 
 ### Viniyoga {#p3}
 
@@ -187,6 +191,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **Reading notes:** Kavitha's reading was correct: "Devī Bhagavatī Mahāmāyā herself forcibly drags even the most knowledgeable minds into moha." Her refinement was that knowledge doesn't *cause* grace. It runs parallel to it and can't be the thing that leads to it. One correction: knowledge isn't useless. It is welcome as an offering when it serves devotion, and it becomes moha's handle when it is held as possession.
 
+**बोधाः:** [1](#r1), [2](#r2), [3](#r3), [4](#r4), [6](#r6)
+
 ### 2. durge smṛtā harasi {#v2}
 *Source: Devī Māhātmya 4.17, Śakrādi-stuti · Metre: vasantatilakā*
 
@@ -234,6 +240,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 - **"It's all her will" should be comforting.** If a cold force ran everything, "nothing is in my control" would be terrifying. But the one running everything is *sadā ārdra-cittā*, so "not in my control" becomes "in hands that are always soft."
 
 **Reading notes:** Kavitha first read the last half as "Who is dāridrya-duḥkha-bhaya-hāriṇī other than you? Your heart is always melting to do good for everyone." She then caught that *dāridrya-duḥkha-bhaya-hāriṇi* is **vocative** (short final -i), so it addresses her and isn't the subject of "who else." The *kā tvad-anyā* ("who else") attaches to the melting heart.
+
+**बोधाः:** [1](#r1), [4](#r4), [6](#r6)
 
 ### 3. sarvamaṅgalamāṅgalye {#v3}
 *Source: Devī Māhātmya 11.10, Nārāyaṇī-stuti · Metre: anuṣṭup*
@@ -304,6 +312,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **Cross-references:** Gītā 9.34 (*mat-parāyaṇaḥ*); Gītā 7.16 (*ārto jijñāsur arthārthī jñānī ca*, where the hurting devotee is listed first); Gītā 4.8 (*paritrāṇāya sādhūnām*).
 
+**बोधाः:** [5](#r5)
+
 ### 5. sarvasvarūpe sarveśe {#v5}
 *Source: Devī Māhātmya 11.24 · Metre: anuṣṭup*
 
@@ -336,6 +346,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 - **It's all her, and you still ask.** "What you fear is also her" doesn't mean the fear is fake or that you should sit in danger. It means nothing is outside her reach. That's why the verse still says *trāhi*: asking is the turning-toward.
 
 **Cross-references:** Bṛhadāraṇyaka Upaniṣad 1.4.2, *dvitīyād vai bhayaṃ bhavati*, "fear comes from a second." If she is everything, there is no second. Gītā 15.15, *mattaḥ smṛtir jñānam apohanaṃ ca*: from him come memory, knowledge, and their loss. It's the same structure as v1 + v2: the giver and the taker of knowing are one. And *smṛti* itself comes from him, so even the act of remembering her (*durge smṛtā*) is her gift.
+
+**बोधाः:** [6](#r6)
 
 ### 6. rogān aśeṣān apahaṃsi {#v6}
 *Source: Devī Māhātmya 11.29 · Metre: indravajrā*
@@ -375,6 +387,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **Cross-references:** Gītā 9.31, *na me bhaktaḥ praṇaśyati*, "my devotee never perishes."
 
+**बोधाः:** [7](#r7)
+
 ### 7. sarvābādhāpraśamanam {#v7}
 *Source: Devī Māhātmya 11.39, the closing verse of the Nārāyaṇī-stuti · Metre: anuṣṭup*
 
@@ -411,6 +425,8 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 - **trailokyasya with *akhileśvari*** ("O sovereign of the three worlds") instead of with the afflictions. This is **grammatically valid**, because a genitive can hang off either word. The standard reading attaches it to *ābādhā*, partly because *akhila-īśvari* already means "sovereign of all," which makes the other reading slightly redundant. It's a legitimate alternative, just non-standard.
 - **evam eva** read as "quiet the afflictions *the way you destroyed* our enemies." This is a **correction.** *Praśamanam* and *vināśanam* are in the same case and both hang off *kāryam*, so they are two parallel requests: quiet the afflictions AND destroy the enemies. A comparison would need a word like *yathā*. Her instinct was still right in spirit: *evam eva* ("just like this") points back to what she just did in the story, slaying Śumbha and Niśumbha. The comparison is to the battle outside the verse, not to anything inside it.
 
+**बोधाः:** [8](#r8)
+
 ## Metre notes
 
 The viniyoga labels the whole stotra *anuṣṭup*, but that is the conventional label for the stotra, not a strict metrical claim. Because every verse is lifted whole from the Saptaśatī, each keeps its original metre:
@@ -438,25 +454,25 @@ ro:G gā:G na:L śe:G ṣā:G na:L pa:L haṃ:G si:L tuṣ:G ṭā:G
 - **Upajāti** is a verse that mixes indravajrā and upendravajrā lines. Example: Bhāgavatam 11.2.36, *kāyena vācā manasendriyair vā…*, whose third line (*karoti yad yat sakalaṃ parasmai*) opens light.
 - **Gītā 15.15** (*sarvasya cāhaṃ hṛdi sanniviṣṭo*) is **pure indravajrā** in all four lines, the same metre as v6. That's why it sounds different from the surrounding 8-syllable Gītā verses when chanted.
 
-## Realizations (from Kavitha)
+## बोधाः (from Kavitha) {#bodhah}
 
-> “she's the one who drags you into delusion but she's also the one who removes your fears when you remember her in distress, and she's also the one who gives you an exceedingly good understanding: *matim atīva śubhām*.”
+> **1.** {#r1} (on [v. 1](#v1), [v. 2](#v2)) “she's the one who drags you into delusion but she's also the one who removes your fears when you remember her in distress, and she's also the one who gives you an exceedingly good understanding: *matim atīva śubhām*.”
 
-> “so the point is it doesn't matter. not that i need more or need less or need to suddenly fix something, but that [knowledge] runs parallel to her grace and can never be the thing that leads to it.”
+> **2.** {#r2} (on [v. 1](#v1)) “so the point is it doesn't matter. not that i need more or need less or need to suddenly fix something, but that [knowledge] runs parallel to her grace and can never be the thing that leads to it.”
 
-> “surrender means you have to let go of wanting to be certain of everything, wanting to know. bc what's the point in knowing, she does what she wills, so you just have to give it to her.”
+> **3.** {#r3} (on [v. 1](#v1)) “surrender means you have to let go of wanting to be certain of everything, wanting to know. bc what's the point in knowing, she does what she wills, so you just have to give it to her.”
 
-> “and the worst (best) part is she drags you into moha but also her heart is ALWAYS melting to do everyone's good. *sadā ārdra-cittā*. everything's her icchā, her māyā, her will, which should be more comforting not less, bc her heart is always eager to do good, regardless of when.”
+> **4.** {#r4} (on [v. 1](#v1), [v. 2](#v2)) “and the worst (best) part is she drags you into moha but also her heart is ALWAYS melting to do everyone's good. *sadā ārdra-cittā*. everything's her icchā, her māyā, her will, which should be more comforting not less, bc her heart is always eager to do good, regardless of when.”
 
-> “she's *devoted* to removing the afflictions of the exact people who, by the qualification model, don't qualify for anything at all. it's not making any arguments, bc she's reaching across the divide to be specifically devoted to removing your suffering.”
+> **5.** {#r5} (on [v. 4](#v4)) “she's *devoted* to removing the afflictions of the exact people who, by the qualification model, don't qualify for anything at all. it's not making any arguments, bc she's reaching across the divide to be specifically devoted to removing your suffering.”
 
-> “the sarvasvarūpa thing being inclusive of fears as well. that's the all-encompassing logic: if everything is her, then what is there which is not? what you fear, what you dread, what you want removed, is also her. but approach her first for protection and she'll protect you. *mattaḥ smṛtir jñānam APOHANAṂ ca*. she hands you over to delusion but also protects you from your fears and has a heart that melts just to do good by you. they're not contradictory bc she's all-encompassing. and durgā meaning fortress, hard to enter, BUT she's also *sadārdracittā*, so the fortress isn't against the surrendered ones.”
+> **6.** {#r6} (on [v. 5](#v5), [v. 1](#v1), [v. 2](#v2)) “the sarvasvarūpa thing being inclusive of fears as well. that's the all-encompassing logic: if everything is her, then what is there which is not? what you fear, what you dread, what you want removed, is also her. but approach her first for protection and she'll protect you. *mattaḥ smṛtir jñānam APOHANAṂ ca*. she hands you over to delusion but also protects you from your fears and has a heart that melts just to do good by you. they're not contradictory bc she's all-encompassing. and durgā meaning fortress, hard to enter, BUT she's also *sadārdracittā*, so the fortress isn't against the surrendered ones.”
 
-> “her pleasure and displeasure are both her. that's all that matters. someone who takes shelter in her becomes a shelter themselves, meaning her grace is transformative. hardships can be faced with strength. it doesn't mean you don't have them, but maybe you stop looking at them like threats.”
+> **7.** {#r7} (on [v. 6](#v6)) “her pleasure and displeasure are both her. that's all that matters. someone who takes shelter in her becomes a shelter themselves, meaning her grace is transformative. hardships can be faced with strength. it doesn't mean you don't have them, but maybe you stop looking at them like threats.”
 
-> “*kāryam*: you're everything, so it's only fitting you do this as well. you're not requesting, bc you don't request your mother to help you, you just cry.”
+> **8.** {#r8} (on [v. 7](#v7)) “*kāryam*: you're everything, so it's only fitting you do this as well. you're not requesting, bc you don't request your mother to help you, you just cry.”
 
-> (on Śiva and Devī in the opening dialogue) “he asked for *kārya-siddhi upāyam* and she's giving him *sarveṣṭa-sādhanam* out of *sneha*. ugh, they have to be in love with each other HERE TOO.”
+> **9.** {#r9} (on [Śiva's question](#p1) and [Devī's answer](#p2), the opening dialogue) “he asked for *kārya-siddhi upāyam* and she's giving him *sarveṣṭa-sādhanam* out of *sneha*. ugh, they have to be in love with each other HERE TOO.”
 
 ## Open threads
 

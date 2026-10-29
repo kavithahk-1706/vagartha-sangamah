@@ -88,7 +88,7 @@ related: []                   # other study slugs
    - **Meaning**
    - **Context**, **Insights**, **Cross-references**, **Reading notes**, each as a labelled sub-block. Give Reading notes a distinct subtle style (a margin-note feel), because they record Kavitha's own alternate readings.
 5. **Metre notes.** Render `scansion` blocks as wrapping syllable+weight units (see §5a), never as monospace pre blocks.
-6. **Realizations (from Kavitha):** a warm, distinct block. Each entry is a quoted line in her own words (in double quotes), styled like a personal journal margin, not like the main text.
+6. **बोधाः (Bodhāḥ, "Awakenings") (from Kavitha):** a warm, distinct block, headed `बोधाः (from Kavitha)` on the page and listed as `बोधाः (Awakenings)` in the Contents rail. Each entry is visibly numbered to match its anchor, written `> **1.** {#r1} (on [v. 1](#v1)) “…”`: the bold number, its anchor, a parenthetical link to the verses it is on, then the quote; each verse card links back to its bodhāḥ from the far right of its title row, in parentheses, e.g. `(बोधाः 1, 4, 6)`. Each entry is a quoted line in her own words (in double quotes), styled like a personal journal margin, not like the main text.
 7. **Open threads.**
 8. **Footer** with prev/next within the collection and related studies.
 
@@ -104,8 +104,8 @@ related: []                   # other study slugs
 **Verse cards on ≥1024px:** split each card into two columns. On the left, the Devanagari + IAST + padaccheda + meaning (the "reading" side). On the right, the word table (the "study" side). Context, Insights, Cross-references and Reading notes run full-width underneath, inside the same card.
 
 **Other rules:**
-- **One common content width.** Every section in the main column (Overview, The arc, verse cards and everything inside them: Context, Insights, Cross-references, Reading notes; Metre notes, Realizations, Open threads) spans the **full width of the main column**. No inner `max-width` / `ch` caps on prose, lists, blockquotes or callouts that leave empty space beside them. The main column itself is what's bounded (by the rails and the overall max page width).
-- **Justified prose.** Running English prose (Overview, The arc, Context, Insights, Reading notes, Realizations, Open threads, list items) is `text-align: justify` with `hyphens: auto` (set `lang="en"` on the page; give IAST spans `lang="sa-Latn"` so English hyphenation rules don't break Sanskrit words). On phones (<640px) prose falls back to `text-align: left` to avoid gappy lines. **Never justify** Devanagari/IAST verse lines (keep them centred), table cells, headings, captions or scansion.
+- **One common content width.** Every section in the main column (Overview, The arc, verse cards and everything inside them: Context, Insights, Cross-references, Reading notes; Metre notes, Bodhāḥ, Open threads) spans the **full width of the main column**. No inner `max-width` / `ch` caps on prose, lists, blockquotes or callouts that leave empty space beside them. The main column itself is what's bounded (by the rails and the overall max page width).
+- **Justified prose.** Running English prose (Overview, The arc, Context, Insights, Reading notes, Bodhāḥ, Open threads, list items) is `text-align: justify` with `hyphens: auto` (set `lang="en"` on the page; give IAST spans `lang="sa-Latn"` so English hyphenation rules don't break Sanskrit words). On phones (<640px) prose falls back to `text-align: left` to avoid gappy lines. **Never justify** Devanagari/IAST verse lines (keep them centred), table cells, headings, captions or scansion.
 - **No scroll bars anywhere.** Nothing scrolls horizontally: not the page, not tables, not code blocks. Anything that overflows wraps onto the next line at the same width.
   - Tables: `table-layout: fixed`, width 100%, with proportional columns (word table ≈ 30% word / 30% root·grammar / 40% meaning). Every cell, **including the first (word) column**, wraps: `overflow-wrap: anywhere` plus normal wrapping at hyphens, so long compounds like `śaraṇa-āgata-dīna-ārta-paritrāṇa-parāyaṇe` break at their hyphens.
   - Code/pre blocks: `white-space: pre-wrap`. Don't use raw `<pre>` for anything that needs alignment.
@@ -184,7 +184,7 @@ Two independent layers:
 --accent: color-mix(in oklch, oklch(calc(var(--L) - .06) calc(var(--C) * var(--cmul) * .85) var(--h)) 82%, #8C8460);
 ```
 
-The accent colours: site/page title, the 4px top band, section headings (except where a theme overrides), word-table word column, guru marks in scansion, and the Realizations stripe.
+The accent colours: site/page title, the 4px top band, section headings (except where a theme overrides), word-table word column, guru marks in scansion, and the Bodhāḥ stripe.
 
 ### 6a. Deity hues
 
@@ -219,9 +219,9 @@ Adding a deity later = one new row (hue + chroma multiplier). Nothing else chang
 
 - **Kalamkārī:** multicolour dye roles, **fixed regardless of deity**, with only the title and top band taking the deity hue. Headings indigo (`#263A6B` / dark `#8C9BC0`), word column madder (`#9E2B25` / `#D2704F`), grammar column leaf-green (`#3E6B35` / `#A3B272`), labels myrobalan (`#B07E14` / `#C9A04A`), guru marks indigo, laghu marks madder. Cards have a **printed band border** (nested 1px iron · gap · madder · gap · indigo rings, via box-shadow). Dividers are a **four-dye rule** (indigo | madder | myrobalan | leaf). Headings get a madder underline. Dark mode uses earthy, muted dyes (above), never saturated "scrapbook" colours.
 - **Paurṇamī:** a moon-glow halo behind the site/page title, a soft radial moonlight from the top of the page, a silver rule with faint glow, and a soft halo shadow on cards.
-- **Tāḍapatra:** ruled leaf lines on cards and Realizations (horizontal lines only), a **double left margin** rule, **leaf-ended cards** (`border-radius: 4px 40px 40px 4px`), ink-underlined headings, and a short centred solid rule.
-- **Kuṅkuma:** **tilaka bars**: a thick 6px decor bar on the left of section headings and Realizations, and a 4px decor top edge on every card.
-- **Vṛndā:** **leaf-cut corners** on cards and Realizations (`22px 3px 22px 3px`), a **vine rule** (an inline-SVG wave line, stroke only) for dividers, and a green left bar on headings.
+- **Tāḍapatra:** ruled leaf lines on cards and Bodhāḥ (horizontal lines only), a **double left margin** rule, **leaf-ended cards** (`border-radius: 4px 40px 40px 4px`), ink-underlined headings, and a short centred solid rule.
+- **Kuṅkuma:** **tilaka bars**: a thick 6px decor bar on the left of section headings and Bodhāḥ, and a 4px decor top edge on every card.
+- **Vṛndā:** **leaf-cut corners** on cards and Bodhāḥ (`22px 3px 22px 3px`), a **vine rule** (an inline-SVG wave line, stroke only) for dividers, and a green left bar on headings.
 
 ### 6d. Dark-mode glows (dark only, static, subtle)
 

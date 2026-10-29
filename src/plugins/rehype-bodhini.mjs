@@ -10,6 +10,8 @@ import { iastToSlug, normForm, rootLinksForStudy } from '../lib/roots.mjs';
 
 const DEVANAGARI = /[ऀ-ॿ]/;
 const CARD_SECTIONS = new Set(['verses', 'preliminaries']);
+const BODHAH = 'बोधाः';
+const isBodhah = (s) => s.trim().startsWith(BODHAH) || /^bodh[aā][hḥ]\b/i.test(s.trim());
 
 const el = (tagName, properties = {}, children = []) => ({ type: 'element', tagName, properties, children });
 const txt = (value) => ({ type: 'text', value });
@@ -94,11 +96,23 @@ function buildCard(h3, body, links, base) {
   const out = [h3];
   let inHead = true;
   let block = null;
+  let bodhah = null;
 
   for (const n of body) {
     if (isBlank(n)) continue;
     if (n.type === 'element' && n.tagName === 'p') {
       const label = takeLabel(n);
+      // "**बोधाः:** [1](#r1), …" sits on the title row, far right, in parentheses.
+      if (label && isBodhah(label)) {
+        bodhah = el('p', { className: ['vc-bodhah'] }, [
+          txt('('),
+          el('span', { className: ['deva'], lang: 'sa' }, [txt(BODHAH)]),
+          txt(' '),
+          ...n.children,
+          txt(')'),
+        ]);
+        continue;
+      }
       if (label && /^padaccheda$/i.test(label)) {
         inHead = false;
         block = null;
@@ -166,14 +180,15 @@ function buildCard(h3, body, links, base) {
     el('div', { className: ['vc-text'] }, text),
     ...words,
   ]);
-  const children = [out[0], top];
+  const children = [bodhah ? el('div', { className: ['vc-head'] }, [out[0], bodhah]) : out[0], top];
   if (notes.length) children.push(el('div', { className: ['vc-notes'] }, notes));
   return el('article', { className: ['verse-card'] }, children);
 }
 
-const OPEN_QUOTE = /^\s*["“‘']/;
+// An entry already opens with a quote, optionally after its number and verse note: `1. (on v. 1) “…`.
+const OPEN_QUOTE = /^\s*(\d+\.\s*)?(\([^)]*\)\s*)?["“‘']/;
 
-/** Realizations are Kavitha's own words: put every entry in double quotes. */
+/** Bodhāḥ are Kavitha's own words: put every entry in double quotes. */
 function quoteEntries(nodes) {
   for (const n of nodes) {
     if (n.type !== 'element') continue;
@@ -236,15 +251,19 @@ export default function rehypeBodhini({ base = '' } = {}) {
     const out = [...lead.body];
     for (const { head, body } of sections) {
       let key = kebab(toText(head));
-      // "Realizations" and "Realizations (from Kavitha)" are the same section.
-      if (key.startsWith('realizations')) key = 'realizations';
+      // बोधाः (Bodhāḥ, "Awakenings"): Kavitha's own words. Older pages may still say "Realizations".
+      if (isBodhah(toText(head)) || key.startsWith('realizations')) key = 'bodhah';
       let content = body;
       if (CARD_SECTIONS.has(key)) {
         const [loose, ...cards] = splitBy(body, 'h3');
         content = [...loose.body, ...cards.map(({ head: h3, body: b }) => buildCard(h3, b, links, base))];
       }
-      if (key === 'realizations') {
-        head.children = [txt('Realizations '), el('span', { className: ['h-sub'] }, [txt('(from Kavitha)')])];
+      if (key === 'bodhah') {
+        head.children = [
+          el('span', { lang: 'sa' }, [txt(BODHAH)]),
+          txt(' '),
+          el('span', { className: ['h-sub'] }, [txt('(from Kavitha)')]),
+        ];
         quoteEntries(content);
       }
       out.push(el('section', { className: ['sec', `sec-${key}`] }, [head, ...content]));

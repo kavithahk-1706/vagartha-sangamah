@@ -29,7 +29,7 @@ Each finished study becomes a **bodhinī** (*"she who awakens"*), named the way 
 - the full **meaning**, narrative **context**, **insights** and **cross-references**
 - **reading notes**: alternate splits, corrections and variant readings (pāṭhabheda)
 - **metre** with syllable-by-syllable scansion
-- **Realizations (from Kavitha)**, in my own words
+- **बोधाः (Awakenings)**, in my own words
 
 Every verbal root met along the way feeds the **धातुमञ्जरी · Dhātu-mañjarī**, a site-wide root index. Each root gets a page listing every form encountered across all studies, with its grammar and a link back to the exact verse. It's a Sanskrit grammar study guide that grows on its own.
 
