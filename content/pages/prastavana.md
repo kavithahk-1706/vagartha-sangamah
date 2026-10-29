@@ -10,7 +10,7 @@ to me who reads by looking at every word and their many meanings and possible in
 
 each piece studied is suffixed with -bodhinī (meaning "she who awakens"), which is the way commentaries were named; to hope for the true meaning and purpose of each text to be awakened within me every time i study them.
 
-the funny thing about sanskrit texts is that they're like forests. forests whose trees have interconnected roots and branches that extend far and wide to embrace one another until all that the eye can see is a cluster of life that nurses more and more life in the canopies of its intertwined treetops and branches. two such branch/mañjarī networks i nurse on vāgartha-saṅgamaḥ are the dhātu-mañjarī and the bodha-mañjarī. 
+the thing about sanskrit texts is that they're like forests. forests whose trees have interconnected roots and branches that extend far and wide to embrace one another until all that the eye can see is a cluster of life that nurses more and more life in the canopies of its intertwined treetops and branches. two such branch/mañjarī networks i nurse on vāgartha-saṅgamaḥ are the dhātu-mañjarī and the bodha-mañjarī. 
 
 the dhātu-mañjarī is like an aśvattha tree of root words and their usage across pieces i've studied; in the garlands of devotion that are these texts, if each word is a flower, the dhātus are the roots of the plants that yielded them, that caused the flower's existence. each such flower could make it into millions of garlands that adorn the divine only through the roots that grew them first. the dhātu-mañjarī resembles the branches that bridge the roots to the flowers, for our remembrance and understanding.
 
