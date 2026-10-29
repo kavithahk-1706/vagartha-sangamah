@@ -1,0 +1,602 @@
+study: "devi-mahatmya/narayani-stuti"
+entries:
+  # v1 — sarvasya buddhirūpeṇa
+  - root: "√budh"
+    root_devanagari: "√बुध्"
+    slug: "budh"
+    gana: 1
+    sense: "to know, to awaken"
+    form: "buddhi"
+    form_devanagari: "बुद्धि"
+    kind: "noun"
+    grammar: "fem. inst. sg. (in compound as buddhirūpeṇa)"
+    prefixes: []
+    anchor: "v1"
+    context: "sarvasya buddhirūpeṇa janasya hṛdi saṃsthite — she dwells in all hearts as intelligence"
+
+  - root: "√sthā"
+    root_devanagari: "√स्था"
+    slug: "sthaa"
+    gana: 1
+    sense: "to stand, to be established"
+    form: "saṃsthite"
+    form_devanagari: "संस्थिते"
+    kind: "participle"
+    grammar: "past passive participle, fem. voc. sg."
+    prefixes: ["sam"]
+    anchor: "v1"
+    context: "hṛdi saṃsthite — she who is established in the heart"
+
+  - root: "√dā"
+    root_devanagari: "√दा"
+    slug: "daa"
+    gana: 3
+    sense: "to give"
+    form: "de"
+    form_devanagari: "दे"
+    kind: "compound-member"
+    grammar: "agent noun in compound, fem. voc. sg. (svargāpavargade)"
+    prefixes: []
+    anchor: "v1"
+    context: "svargāpavargade — giver of heaven and liberation"
+
+  - root: "√nam"
+    root_devanagari: "√नम्"
+    slug: "nam"
+    gana: 1
+    sense: "to bow"
+    form: "namaḥ"
+    form_devanagari: "नमः"
+    kind: "noun"
+    grammar: "neut. nom. sg."
+    prefixes: []
+    anchor: "v1"
+    context: "namo'stu te — salutation to you (refrain, every verse)"
+
+  - root: "√as"
+    root_devanagari: "√अस्"
+    slug: "as"
+    gana: 2
+    sense: "to be"
+    form: "astu"
+    form_devanagari: "अस्तु"
+    kind: "finite-verb"
+    grammar: "3rd sg. imperative, parasmaipada"
+    prefixes: []
+    anchor: "v1"
+    context: "namo'stu te — may there be salutation to you (refrain)"
+
+  # v2 — kalākāṣṭhādi
+  - root: "√dā"
+    root_devanagari: "√दा"
+    slug: "daa"
+    gana: 3
+    sense: "to give"
+    form: "pradāyini"
+    form_devanagari: "प्रदायिनि"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: ["pra"]
+    anchor: "v2"
+    context: "pariṇāmapradāyini — bestower of transformation"
+
+  - root: "√nam"
+    root_devanagari: "√नम्"
+    slug: "nam"
+    gana: 1
+    sense: "to bow"
+    form: "pariṇāma"
+    form_devanagari: "परिणाम"
+    kind: "noun"
+    grammar: "masc. (in compound), result/transformation"
+    prefixes: ["pari"]
+    anchor: "v2"
+    context: "pariṇāmapradāyini — she who gives transformation (pari + √nam = bending around, changing)"
+
+  - root: "√ram"
+    root_devanagari: "√रम्"
+    slug: "ram"
+    gana: 1
+    sense: "to rest, cease"
+    form: "uparatau"
+    form_devanagari: "उपरतौ"
+    kind: "noun"
+    grammar: "fem. loc. sg. (abstract noun from upa + √ram)"
+    prefixes: ["upa"]
+    anchor: "v2"
+    context: "viśvasyoparatau — in the cessation/dissolution of the universe"
+
+  # v3 — sarvamangala
+  - root: "√sādh"
+    root_devanagari: "√साध्"
+    slug: "saadh"
+    gana: 5
+    sense: "to accomplish"
+    form: "sādhike"
+    form_devanagari: "साधिके"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v3"
+    context: "sarvārthasādhike — accomplisher of all purposes"
+
+  # v4 — sṛṣṭisthiti
+  - root: "√sṛj"
+    root_devanagari: "√सृज्"
+    slug: "srij"
+    gana: 6
+    sense: "to release, create"
+    form: "sṛṣṭi"
+    form_devanagari: "सृष्टि"
+    kind: "noun"
+    grammar: "fem. (in compound)"
+    prefixes: []
+    anchor: "v4"
+    context: "sṛṣṭisthitivināśānām — of creation, sustenance, destruction"
+
+  - root: "√sthā"
+    root_devanagari: "√स्था"
+    slug: "sthaa"
+    gana: 1
+    sense: "to stand, to be established"
+    form: "sthiti"
+    form_devanagari: "स्थिति"
+    kind: "noun"
+    grammar: "fem. (in compound)"
+    prefixes: []
+    anchor: "v4"
+    context: "sṛṣṭisthitivināśānām — sustenance/preservation"
+
+  - root: "√naś"
+    root_devanagari: "√नश्"
+    slug: "nash"
+    gana: 4
+    sense: "to perish, destroy"
+    form: "vināśa"
+    form_devanagari: "विनाश"
+    kind: "noun"
+    grammar: "masc. (in compound)"
+    prefixes: ["vi"]
+    anchor: "v4"
+    context: "sṛṣṭisthitivināśānām — destruction"
+
+  - root: "√bhū"
+    root_devanagari: "√भू"
+    slug: "bhuu"
+    gana: 1
+    sense: "to become, to be"
+    form: "bhūte"
+    form_devanagari: "भूते"
+    kind: "participle"
+    grammar: "past passive participle, fem. voc. sg."
+    prefixes: []
+    anchor: "v4"
+    context: "śaktibhūte — she who has become / who IS the power"
+
+  - root: "√śri"
+    root_devanagari: "√श्रि"
+    slug: "shri"
+    gana: 1
+    sense: "to resort to, depend on"
+    form: "āśraye"
+    form_devanagari: "आश्रये"
+    kind: "noun"
+    grammar: "fem. voc. sg."
+    prefixes: ["ā"]
+    anchor: "v4"
+    context: "guṇāśraye — abode/support of the guṇas"
+
+  # v5 — śaraṇāgata
+  - root: "√gam"
+    root_devanagari: "√गम्"
+    slug: "gam"
+    gana: 1
+    sense: "to go"
+    form: "āgata"
+    form_devanagari: "आगत"
+    kind: "participle"
+    grammar: "past passive participle (in compound)"
+    prefixes: ["ā"]
+    anchor: "v5"
+    context: "śaraṇāgata — those who have come to refuge"
+
+  - root: "√trā"
+    root_devanagari: "√त्रा"
+    slug: "traa"
+    gana: 2
+    sense: "to protect, rescue"
+    form: "paritrāṇa"
+    form_devanagari: "परित्राण"
+    kind: "noun"
+    grammar: "neut. (in compound)"
+    prefixes: ["pari"]
+    anchor: "v5"
+    context: "paritrāṇaparāyaṇe — she whose highest aim is complete protection"
+
+  - root: "√hṛ"
+    root_devanagari: "√हृ"
+    slug: "hri"
+    gana: 1
+    sense: "to take, remove"
+    form: "hare"
+    form_devanagari: "हरे"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v5"
+    context: "sarvasyārtihare — remover of all suffering"
+
+  # v6 — Brahmāṇī
+  - root: "√yuj"
+    root_devanagari: "√युज्"
+    slug: "yuj"
+    gana: 7
+    sense: "to yoke, join"
+    form: "yukta"
+    form_devanagari: "युक्त"
+    kind: "participle"
+    grammar: "past passive participle (in compound)"
+    prefixes: []
+    anchor: "v6"
+    context: "haṃsayuktavimānasthe — chariot yoked with swans"
+
+  - root: "√sthā"
+    root_devanagari: "√स्था"
+    slug: "sthaa"
+    gana: 1
+    sense: "to stand, to be established"
+    form: "sthe"
+    form_devanagari: "स्थे"
+    kind: "participle"
+    grammar: "past passive participle, fem. voc. sg. (in compound)"
+    prefixes: []
+    anchor: "v6"
+    context: "vimānasthe — seated on the chariot"
+
+  - root: "√dhṛ"
+    root_devanagari: "√धृ"
+    slug: "dhri"
+    gana: 1
+    sense: "to hold, bear"
+    form: "dhāriṇi"
+    form_devanagari: "धारिणि"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v6"
+    context: "brahmāṇīrūpadhāriṇi — bearer of the form of Brahmāṇī"
+
+  - root: "√kṣar"
+    root_devanagari: "√क्षर्"
+    slug: "kssar"
+    gana: 1
+    sense: "to flow, sprinkle"
+    form: "kṣarike"
+    form_devanagari: "क्षरिके"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v6"
+    context: "kauśāmbhaḥkṣarike — she who sprinkles the sacred water"
+
+  # v7 — Māheśvarī
+  - root: "√dhṛ"
+    root_devanagari: "√धृ"
+    slug: "dhri"
+    gana: 1
+    sense: "to hold, bear"
+    form: "dhare"
+    form_devanagari: "धरे"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v7"
+    context: "triśūlacandrāhidhare — bearer of trident, moon, serpent"
+
+  - root: "√vah"
+    root_devanagari: "√वह्"
+    slug: "vah"
+    gana: 1
+    sense: "to carry, ride"
+    form: "vāhini"
+    form_devanagari: "वाहिनि"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v7"
+    context: "mahāvṛṣabhavāhini — rider of the great bull"
+
+  # v8 — Kaumārī
+  - root: "√vṛ"
+    root_devanagari: "√वृ"
+    slug: "vri"
+    gana: 5
+    sense: "to surround, cover"
+    form: "vṛte"
+    form_devanagari: "वृते"
+    kind: "participle"
+    grammar: "past passive participle, fem. voc. sg."
+    prefixes: []
+    anchor: "v8"
+    context: "mayūrakukkuṭavṛte — surrounded by peacocks and roosters"
+
+  - root: "√dhṛ"
+    root_devanagari: "√धृ"
+    slug: "dhri"
+    gana: 1
+    sense: "to hold, bear"
+    form: "dhare"
+    form_devanagari: "धरे"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v8"
+    context: "mahāśaktidhare — bearer of the great spear"
+
+  - root: "√sthā"
+    root_devanagari: "√स्था"
+    slug: "sthaa"
+    gana: 1
+    sense: "to stand, to be established"
+    form: "saṃsthāne"
+    form_devanagari: "संस्थाने"
+    kind: "noun"
+    grammar: "fem. voc. sg."
+    prefixes: ["sam"]
+    anchor: "v8"
+    context: "kaumārīrūpasaṃsthāne — established in the form of Kaumārī"
+
+  # v9 — Vaiṣṇavī
+  - root: "√grah"
+    root_devanagari: "√ग्रह्"
+    slug: "grah"
+    gana: 9
+    sense: "to seize, grasp"
+    form: "gṛhīta"
+    form_devanagari: "गृहीत"
+    kind: "participle"
+    grammar: "past passive participle (in compound)"
+    prefixes: []
+    anchor: "v9"
+    context: "gṛhītaparamāyudhe — she who has seized the supreme weapons"
+
+  - root: "√sad"
+    root_devanagari: "√सद्"
+    slug: "sad"
+    gana: 1
+    sense: "to sit, sink; (with pra-) to be gracious"
+    form: "prasīda"
+    form_devanagari: "प्रसीद"
+    kind: "finite-verb"
+    grammar: "2nd sg. imperative, parasmaipada"
+    prefixes: ["pra"]
+    anchor: "v9"
+    context: "prasīda vaiṣṇavīrūpe — be gracious, O one in the form of Vaiṣṇavī"
+
+  # v10 — Vārāhī
+  - root: "√grah"
+    root_devanagari: "√ग्रह्"
+    slug: "grah"
+    gana: 9
+    sense: "to seize, grasp"
+    form: "gṛhīta"
+    form_devanagari: "गृहीत"
+    kind: "participle"
+    grammar: "past passive participle (in compound)"
+    prefixes: []
+    anchor: "v10"
+    context: "gṛhītogramahācakre — wielder of the fierce great discus"
+
+  - root: "√dhṛ"
+    root_devanagari: "√धृ"
+    slug: "dhri"
+    gana: 1
+    sense: "to hold, bear"
+    form: "uddhṛta"
+    form_devanagari: "उद्धृत"
+    kind: "participle"
+    grammar: "past passive participle (in compound, ud + √dhṛ)"
+    prefixes: ["ud"]
+    anchor: "v10"
+    context: "daṃṣṭroddhṛtavasundhare — she who lifted the earth with her tusks"
+
+  # v11 — Nārasiṃhī
+  - root: "√han"
+    root_devanagari: "√हन्"
+    slug: "han"
+    gana: 2
+    sense: "to slay, strike"
+    form: "hantum"
+    form_devanagari: "हन्तुम्"
+    kind: "infinitive"
+    grammar: "tumun infinitive"
+    prefixes: []
+    anchor: "v11"
+    context: "hantuṃ daityān kṛtodyame — she who strives to slay the demons"
+
+  - root: "√kṛ"
+    root_devanagari: "√कृ"
+    slug: "kri"
+    gana: 8
+    sense: "to do, make"
+    form: "kṛta"
+    form_devanagari: "कृत"
+    kind: "participle"
+    grammar: "past passive participle (in compound kṛtodyame)"
+    prefixes: []
+    anchor: "v11"
+    context: "kṛtodyame — she who has made the effort"
+
+  - root: "√yam"
+    root_devanagari: "√यम्"
+    slug: "yam"
+    gana: 1
+    sense: "to restrain, strive"
+    form: "udyame"
+    form_devanagari: "उद्यमे"
+    kind: "noun"
+    grammar: "fem. voc. sg. (ud + √yam)"
+    prefixes: ["ud"]
+    anchor: "v11"
+    context: "kṛtodyame — she who has undertaken the effort"
+
+  - root: "√trā"
+    root_devanagari: "√त्रा"
+    slug: "traa"
+    gana: 2
+    sense: "to protect, rescue"
+    form: "trāṇa"
+    form_devanagari: "त्राण"
+    kind: "noun"
+    grammar: "neut. (in compound trailokyatrāṇa)"
+    prefixes: []
+    anchor: "v11"
+    context: "trailokyatrāṇasahite — accompanied by the protection of the three worlds"
+
+  # v12 — Aindrī
+  - root: "√hṛ"
+    root_devanagari: "√हृ"
+    slug: "hri"
+    gana: 1
+    sense: "to take, remove"
+    form: "hare"
+    form_devanagari: "हरे"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v12"
+    context: "vṛtraprāṇahare — taker of Vṛtra's life-breath"
+
+  - root: "√jval"
+    root_devanagari: "√ज्वल्"
+    slug: "jval"
+    gana: 1
+    sense: "to blaze, shine"
+    form: "ujjvale"
+    form_devanagari: "उज्ज्वले"
+    kind: "adjective"
+    grammar: "fem. voc. sg."
+    prefixes: ["ud"]
+    anchor: "v12"
+    context: "sahasranayanoijvale — blazing with a thousand eyes"
+
+  # v13 — Śivadūtī
+  - root: "√han"
+    root_devanagari: "√हन्"
+    slug: "han"
+    gana: 2
+    sense: "to slay, strike"
+    form: "hata"
+    form_devanagari: "हत"
+    kind: "participle"
+    grammar: "past passive participle (in compound hatadaitya)"
+    prefixes: []
+    anchor: "v13"
+    context: "hatadaityamahābale — she of great strength who slew the demons"
+
+  # v14 — Cāmuṇḍā
+  - root: "√math"
+    root_devanagari: "√मथ्"
+    slug: "math"
+    gana: 1
+    sense: "to churn, crush"
+    form: "mathane"
+    form_devanagari: "मथने"
+    kind: "noun"
+    grammar: "agent noun, fem. voc. sg."
+    prefixes: []
+    anchor: "v14"
+    context: "muṇḍamathane — crusher/slayer of Muṇḍa"
+
+  # v15 — lakṣmi lajje
+  - root: "√vid"
+    root_devanagari: "√विद्"
+    slug: "vid-2"
+    gana: 2
+    sense: "to know"
+    form: "vidye"
+    form_devanagari: "विद्ये"
+    kind: "noun"
+    grammar: "fem. voc. sg. (mahāvidye)"
+    prefixes: []
+    anchor: "v15"
+    context: "mahāvidye — O Great Knowledge (parāvidyā / Daśamahāvidyā)"
+
+  - root: "√puṣ"
+    root_devanagari: "√पुष्"
+    slug: "push"
+    gana: 4
+    sense: "to nourish"
+    form: "puṣṭi"
+    form_devanagari: "पुष्टि"
+    kind: "noun"
+    grammar: "fem. voc. sg."
+    prefixes: []
+    anchor: "v15"
+    context: "puṣṭi — O Nourishment"
+
+  - root: "√dhṛ"
+    root_devanagari: "√धृ"
+    slug: "dhri"
+    gana: 1
+    sense: "to hold, bear"
+    form: "dhruve"
+    form_devanagari: "ध्रुवे"
+    kind: "adjective"
+    grammar: "fem. voc. sg."
+    prefixes: []
+    anchor: "v15"
+    context: "dhruve — O Constant/Fixed one"
+
+  # v16 — medhe sarasvati
+  - root: "√bhū"
+    root_devanagari: "√भू"
+    slug: "bhuu"
+    gana: 1
+    sense: "to become, to be"
+    form: "bhūti"
+    form_devanagari: "भूति"
+    kind: "noun"
+    grammar: "fem. voc. sg."
+    prefixes: []
+    anchor: "v16"
+    context: "bhūti — O Glory/Prosperity/Ash"
+
+  - root: "√yam"
+    root_devanagari: "√यम्"
+    slug: "yam"
+    gana: 1
+    sense: "to restrain, govern"
+    form: "niyate"
+    form_devanagari: "नियते"
+    kind: "participle"
+    grammar: "past passive participle, fem. voc. sg."
+    prefixes: ["ni"]
+    anchor: "v16"
+    context: "niyate — O Constant/Governed one (the fixed order of reality)"
+
+  - root: "√sad"
+    root_devanagari: "√सद्"
+    slug: "sad"
+    gana: 1
+    sense: "to sit, sink; (with pra-) to be gracious"
+    form: "prasīda"
+    form_devanagari: "प्रसीद"
+    kind: "finite-verb"
+    grammar: "2nd sg. imperative, parasmaipada"
+    prefixes: ["pra"]
+    anchor: "v16"
+    context: "prasīdeśe — be gracious, O Sovereign (closing plea)"
+
+  - root: "√īś"
+    root_devanagari: "√ईश्"
+    slug: "iish"
+    gana: 2
+    sense: "to rule, command"
+    form: "īśe"
+    form_devanagari: "ईशे"
+    kind: "noun"
+    grammar: "fem. voc. sg."
+    prefixes: []
+    anchor: "v16"
+    context: "prasīdeśe — O Sovereign"
