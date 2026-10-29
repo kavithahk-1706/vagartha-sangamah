@@ -11,7 +11,8 @@ import { iastToSlug, normForm, rootLinksForStudy } from '../lib/roots.mjs';
 const DEVANAGARI = /[ऀ-ॿ]/;
 const CARD_SECTIONS = new Set(['verses', 'preliminaries']);
 const BODHAH = 'बोधाः';
-const isBodhah = (s) => s.trim().startsWith(BODHAH) || /^bodh[aā][hḥ]\b/i.test(s.trim());
+// No \b after ḥ: outside Unicode mode it is not a word character, so \b never matches there.
+const isBodhah = (s) => s.trim().startsWith(BODHAH) || /^bodh[aā][hḥ](?![a-z])/i.test(s.trim().normalize('NFC'));
 
 const el = (tagName, properties = {}, children = []) => ({ type: 'element', tagName, properties, children });
 const txt = (value) => ({ type: 'text', value });

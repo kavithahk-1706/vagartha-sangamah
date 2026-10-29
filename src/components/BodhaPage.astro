@@ -1,0 +1,68 @@
+---
+// One bodha on its own page (/bodha-manjari/<study>/<n>/), laid out like a root page.
+import Base from '../layouts/Base.astro';
+import Motif from './Motif.astro';
+import { url, formatDate } from '../lib/url';
+import { bodhaAnchor, inlineHtml, quoted } from '../lib/bodhah.mjs';
+
+interface Props {
+  s: any;
+  entry: any;
+}
+const { s, entry } = Astro.props;
+const studyHref = url(`${s.study}/`);
+const studyName = s.title_devanagari ?? s.title;
+const DEVA_DIGITS = '०१२३४५६७८९';
+const devaNum = String(entry.n).replace(/\d/g, (d) => DEVA_DIGITS[+d]);
+---
+<Base title={`बोधः ${devaNum} · ${studyName}`} description={`Bodha ${entry.n} from ${s.title}`} theme={s.theme}>
+  <header class="page-head bodha-head">
+    <div class="wrap">
+      <div class="motif"><Motif name="lotus" /></div>
+      <p class="bodha-numeral" lang="sa">{devaNum}</p>
+      <h1 lang="sa">बोधः</h1>
+      <p class="iast">Bodha {entry.n}</p>
+      <p class="gloss">
+        {s.title_devanagari && <span lang="sa">{s.title_devanagari}</span>}
+        {s.title_devanagari && ' · '}<em>{s.title}</em>
+      </p>
+      {s.studied_on && <p class="sub">studied {formatDate(s.studied_on)}</p>}
+    </div>
+  </header>
+
+  <div class="wrap wrap-wide bodha-page">
+    <section class="kind-group">
+      <h2>
+        <span class="deva" lang="sa">वचनम्</span>
+        <span class="en">in her words</span>
+      </h2>
+      <blockquote class="occ bodha-quote">
+        {quoted(entry.paragraphs).map((p) => (
+          <p><Fragment set:html={inlineHtml(p, studyHref)} /></p>
+        ))}
+        <a class="where" href={`${studyHref}${bodhaAnchor(s, entry)}`}>
+          Read it in place: <span lang="sa">{studyName}</span> · बोधः {devaNum} →
+        </a>
+      </blockquote>
+    </section>
+
+    {
+      entry.on && (
+        <section class="kind-group">
+          <h2>
+            <span class="deva" lang="sa">श्लोकाः</span>
+            <span class="en">verses</span>
+          </h2>
+          <div class="occ">
+            <p class="context">on <Fragment set:html={inlineHtml(entry.on, studyHref)} /></p>
+          </div>
+        </section>
+      )
+    }
+
+    <nav class="bodha-back">
+      <a href={studyHref}>← <span lang="sa">{studyName}</span> · <em>{s.title}</em></a>
+      <a href={url('bodha-manjari/')}>← <span lang="sa">बोधमञ्जरी</span> · Awakenings</a>
+    </nav>
+  </div>
+</Base>

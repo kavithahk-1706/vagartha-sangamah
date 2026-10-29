@@ -178,6 +178,10 @@
   --accent-2: var(--c-label);
   --gradient-start: color-mix(in oklch, var(--accent) 9%, var(--surface));
   --gradient-end: color-mix(in oklch, var(--decor) 12%, var(--bg));
+  /* Scrollbars (global.css § Scrollbars): a quiet accent-tinted thumb that warms to the accent on hover */
+  --sb-thumb: color-mix(in oklch, var(--accent) 35%, var(--border));
+  --sb-thumb-hover: color-mix(in oklch, var(--accent) 75%, var(--border));
+  --sb-track: transparent;
 }
 /* Dark mode, all themes: muted and pulled toward earth so accents sit like dye on cloth */
 :root[data-mode='dark'],

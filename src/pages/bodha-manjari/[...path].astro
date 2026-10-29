@@ -1,0 +1,18 @@
+---
+// Every page under /bodha-manjari/, generated from the bodhinīs' बोधाः sections. Never hand-edited.
+//   /bodha-manjari/<study>/      one bodhinī's bodhāḥ in a grid
+//   /bodha-manjari/<study>/<n>/  one bodha on its own page
+import BodhiniBodhah from '../../components/BodhiniBodhah.astro';
+import BodhaPage from '../../components/BodhaPage.astro';
+import { aggregateBodhah } from '../../lib/bodhah.mjs';
+
+export function getStaticPaths() {
+  return aggregateBodhah().flatMap((s) => [
+    { params: { path: s.study }, props: { s } },
+    ...s.entries.map((entry) => ({ params: { path: `${s.study}/${entry.n}` }, props: { s, entry } })),
+  ]);
+}
+
+const { s, entry } = Astro.props;
+---
+{entry ? <BodhaPage s={s} entry={entry} /> : <BodhiniBodhah s={s} />}

@@ -26,7 +26,7 @@ type Toc = { slug: string; text: string; children: { slug: string; text: string 
 const toc: Toc[] = [];
 for (const h of headings) {
   // The बोधाः section is listed by its English gloss: "बोधाः (Awakenings)".
-  const text = /^(बोधाः|realizations)/i.test(h.text.trim()) ? 'बोधाः (Awakenings)' : h.text;
+  const text = /^(बोधाः|bodh[aā][hḥ](?![a-z])|realizations)/i.test(h.text.trim().normalize('NFC')) ? 'बोधाः (Awakenings)' : h.text;
   if (h.depth === 2) toc.push({ slug: h.slug, text, children: [] });
   else if (h.depth === 3 && toc.length) toc.at(-1)!.children.push({ slug: h.slug, text: h.text });
 }

@@ -1,0 +1,57 @@
+---
+// One bodhinī's bodhāḥ (/bodha-manjari/<study>/): every bodha in a full-width grid, each card
+// leading on to that bodha's own page. Laid out like a root page.
+import Base from '../layouts/Base.astro';
+import Motif from './Motif.astro';
+import { url, formatDate } from '../lib/url';
+import { bodhaPath, inlineHtml, quoted } from '../lib/bodhah.mjs';
+
+interface Props {
+  s: any;
+}
+const { s } = Astro.props;
+const studyHref = url(`${s.study}/`);
+const count = `${s.entries.length} ${s.entries.length === 1 ? 'bodha' : 'bodhāḥ'}`;
+---
+<Base title={`बोधाः · ${s.title_devanagari ?? s.title}`} description={`The bodhāḥ of ${s.title}`} theme={s.theme}>
+  <header class="page-head">
+    <div class="wrap">
+      <div class="motif"><Motif name="lotus" /></div>
+      <h1 lang="sa">{s.title_devanagari ?? s.title}</h1>
+      {s.title_devanagari && <p class="iast">{s.title}</p>}
+      <p class="gloss"><span lang="sa">बोधाः</span> · Awakenings</p>
+      <p class="sub">
+        {s.text_name && <>{s.text_name} · </>}{count}{s.studied_on && <> · studied {formatDate(s.studied_on)}</>}
+        {s.source && <><br />{s.source}</>}
+      </p>
+    </div>
+  </header>
+
+  <div class="wrap wrap-wide bodha-manjari">
+    <div class="bm-grid">
+      {s.entries.map((e: any) => {
+        const page = url(bodhaPath(s.study, e));
+        return (
+          <article class="occ bm-card bm-full">
+            <span class="bm-num">{e.n}</span>
+            <div class="bm-text">
+              {quoted(e.paragraphs).map((p: string) => (
+                <p><Fragment set:html={inlineHtml(p, studyHref)} /></p>
+              ))}
+            </div>
+            <div class="bm-foot">
+              {e.on && <span class="bm-on">on <Fragment set:html={inlineHtml(e.on, studyHref)} /></span>}
+              {/* Stretched over the whole card (see .bm-cover); verse links sit above it */}
+              <a class="where bm-cover" href={page}><span lang="sa">बोधः</span> {e.n} →</a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <nav class="bodha-back">
+      <a href={studyHref}>← <span lang="sa">{s.title_devanagari ?? s.title}</span> · <em>{s.title}</em></a>
+      <a href={url('bodha-manjari/')}>← <span lang="sa">बोधमञ्जरी</span> · Awakenings</a>
+    </nav>
+  </div>
+</Base>

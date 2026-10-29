@@ -110,14 +110,24 @@ const words = [
       })
     }
 
-    <a class="roots-link" href={url('dhatu-manjari/')}>
-      <Motif name="sprig" />
-      <span>
-        <span class="deva" lang="sa">धातुमञ्जरी</span>
-        <span class="iast">Dhātu-mañjarī</span>
-        <span class="gloss">Root index: every verbal root met so far, traced back to its verse</span>
-      </span>
-    </a>
+    <div class="index-links">
+      <a class="roots-link" href={url('dhatu-manjari/')}>
+        <Motif name="sprig" />
+        <span>
+          <span class="deva" lang="sa">धातुमञ्जरी</span>
+          <span class="iast">Dhātu-mañjarī</span>
+          <span class="gloss">Root index: every verbal root met so far, traced back to its verse</span>
+        </span>
+      </a>
+      <a class="roots-link" href={url('bodha-manjari/')}>
+        <Motif name="lotus" />
+        <span>
+          <span class="deva" lang="sa">बोधमञ्जरी</span>
+          <span class="iast">Bodha-mañjarī</span>
+          <span class="gloss">Awakenings: every bodha from every study, in her own words</span>
+        </span>
+      </a>
+    </div>
 
     <TempleRule motif="lotus" />
   </div>

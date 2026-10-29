@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import Motif from '../../components/Motif.astro';
+import { url, formatDate } from '../../lib/url';
+import { collectionKey, collectionMeta, collectionOrder } from '../../lib/collections';
+import { aggregateBodhah, bodhiniPath } from '../../lib/bodhah.mjs';
+
+const studies = aggregateBodhah(); // newest study first
+const total = studies.reduce((n, s) => n + s.entries.length, 0);
+
+// Group by collection folder, as the home page does; newest first within each (already sorted).
+const groups = new Map<string, typeof studies>();
+for (const s of studies) {
+  const key = collectionKey(s.study);
+  if (!groups.has(key)) groups.set(key, []);
+  groups.get(key)!.push(s);
+}
+const keys = [...groups.keys()].sort((a, b) => {
+  const ia = collectionOrder.indexOf(a), ib = collectionOrder.indexOf(b);
+  if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  return a.localeCompare(b);
+});
+---
+<Base title="बोधमञ्जरी" description="Bodha-mañjarī: every bodha (awakening) from every study, each linked back to its verse.">
+  <header class="page-head">
+    <div class="wrap">
+      <div class="motif"><Motif name="lotus" /></div>
+      <h1 lang="sa">बोधमञ्जरी</h1>
+      <p class="iast">Bodha-mañjarī</p>
+      <p class="gloss">Awakenings across all studies</p>
+      <p class="sub">
+        {total} बोधाः from {studies.length} bodhinī{studies.length === 1 ? '' : 's'}. Open a bodhinī to read its bodhāḥ.
+      </p>
+    </div>
+  </header>
+
+  <div class="wrap wrap-wide">
+    {total === 0 && <p class="empty-note">No bodhāḥ yet. They appear as studies add a बोधाः section.</p>}
+
+    {
+      keys.map((key) => {
+        const list = groups.get(key)!;
+        const meta = collectionMeta[key];
+        return (
+          <section class="collection" id={key}>
+            <div class="collection-head">
+              <h2 lang="sa">{meta?.deva ?? list[0].collection}</h2>
+              {meta && <span class="iast">{meta.iast}</span>}
+              {meta && <span class="gloss">{meta.en}</span>}
+            </div>
+            <div class="card-grid card-grid-2">
+              {list.map((s) => (
+                <a class="study-card" href={url(bodhiniPath(s.study))} data-theme={s.theme}>
+                  {s.title_devanagari && <span class="deva" lang="sa">{s.title_devanagari}</span>}
+                  <span class="iast">{s.title}</span>
+                  {s.essence && <p class="essence">{s.essence}</p>}
+                  <span class="meta">
+                    {s.entries.length} {s.entries.length === 1 ? 'bodha' : 'bodhāḥ'}
+                    {s.studied_on && (
+                      <> · <time datetime={s.studied_on.toISOString().slice(0, 10)}>{formatDate(s.studied_on)}</time></>
+                    )}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+</Base>

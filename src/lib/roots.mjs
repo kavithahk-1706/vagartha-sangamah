@@ -7,7 +7,7 @@ import { load as yamlLoad } from 'js-yaml';
 const ROOTS_DIR = path.resolve(process.cwd(), 'content/roots');
 const STUDIES_DIR = path.resolve(process.cwd(), 'content/studies');
 
-function listFiles(dir, suffix) {
+export function listFiles(dir, suffix) {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir, { recursive: true, withFileTypes: true })

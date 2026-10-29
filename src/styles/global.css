@@ -108,6 +108,48 @@ kbd {
   white-space: nowrap;
 }
 
+/* ───────── Scrollbars ─────────
+   Every scroll container (the page, the Contents rail, the right rail, anything added later) gets a
+   thin, rounded, theme-coloured bar with no arrow buttons. Colours are tokens from themes.css
+   (--sb-thumb, --sb-thumb-hover, --sb-track), re-derived per reader theme, mode and deity accent.
+   To restyle one container, override those tokens on it; nothing else needs touching.
+   Chromium and Safari use ::-webkit-scrollbar (the only way to drop Windows' arrow buttons; setting
+   scrollbar-width/-color there would switch these rules off), Firefox the standard properties. */
+/* Hovering a scroller (not the page itself) brings its thumb up to the accent */
+body *:hover {
+  --sb-thumb: var(--sb-thumb-hover);
+}
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: var(--sb-track);
+  }
+  /* A 4px rounded thumb inside a 10px lane; it widens to 6px under the pointer */
+  ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: var(--sb-thumb) padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    border-width: 2px;
+    background: var(--sb-thumb-hover) padding-box;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sb-thumb) var(--sb-track);
+  }
+}
+
 /* ───────── Header ───────── */
 .site-header {
   border-bottom: 1px solid var(--border);
@@ -157,6 +199,13 @@ kbd {
   text-decoration: none;
   font: inherit;
   cursor: pointer;
+}
+/* The index links carry a two-line label: even breathing room on all sides, and a rounded
+   rectangle (a pill's curved ends would crowd the text) */
+.icon-link {
+  gap: 10px;
+  padding: 9px 16px 9px 14px;
+  border-radius: 12px;
 }
 .icon-link:hover,
 .mode-toggle:hover {
@@ -904,11 +953,23 @@ code.metre-pattern {
   color: var(--muted);
 }
 
+/* Home: the two index cards (धातुमञ्जरी, बोधमञ्जरी), equal halves of the full page width; stacked on phones */
+.index-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 3rem;
+}
+@media (min-width: 640px) {
+  .index-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 .roots-link {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 3rem;
+  min-width: 0;
   padding: 1rem 1.2rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1027,6 +1088,130 @@ code.metre-pattern {
 .empty-note {
   color: var(--muted);
   font-style: italic;
+}
+
+/* ───────── Bodha-mañjarī ─────────
+   Index: the home page's .collection / .card-grid / .study-card, capped at 2 columns.
+   Bodhinī page: every bodha as an .occ card (the root page's card, so reader themes style it)
+   in a full-width grid, 1 column on phones and 2 equal columns from 768px.
+   Accents are the study's deity --accent (not a reader theme's fixed role colour), the same on all three levels. */
+@media (min-width: 640px) {
+  .card-grid.card-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.bm-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .bm-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Outranks the reader themes' .occ margins: the grid gap alone spaces the cards */
+.bodha-manjari .bm-grid > .occ.bm-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  position: relative;
+  min-width: 0;
+  border-left: 3px solid var(--accent);
+  transition: background-color 0.15s ease-out, border-color 0.15s ease-out;
+}
+/* The whole card is one link: the card's "बोधः n →" link stretches over it */
+.bm-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.bm-card .bm-text a,
+.bm-card .bm-on a {
+  position: relative;
+  z-index: 1;
+}
+.bodha-manjari .bm-grid > .occ.bm-card:has(.bm-cover:hover),
+.bodha-manjari .bm-grid > .occ.bm-card:has(.bm-cover:focus-visible) {
+  border-color: var(--accent);
+  background: linear-gradient(160deg, var(--surface) 30%, var(--gradient-start));
+}
+.bm-card:has(.bm-cover:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.bm-cover:focus-visible {
+  outline: none;
+}
+.bm-num {
+  align-self: flex-start;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+.bm-text p {
+  margin: 0.25rem 0 0.6rem;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+/* Verse references and the way on to the bodha's page, level along the foot of each row */
+.bm-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+.bm-on {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.bm-foot .where {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ───────── Bodha page: one bodha, laid out like a root page ───────── */
+.bodha-head .bodha-numeral {
+  margin: 0.25rem 0 -0.35rem;
+  font-family: var(--font-deva);
+  font-size: clamp(3rem, 14vw, 4.25rem);
+  line-height: 1;
+  color: var(--accent);
+}
+.bodha-head h1 {
+  font-size: clamp(1.5rem, 6vw, 1.9rem);
+}
+.bodha-head .gloss em {
+  font-style: italic;
+}
+/* Outranks the reader themes' .occ borders, so the stripe keeps the study's deity accent */
+.bodha-page .kind-group .occ.bodha-quote {
+  margin: 0;
+  border-left: 3px solid var(--accent);
+}
+.bodha-quote p {
+  margin: 0 0 0.85rem;
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+.bodha-page .occ .context {
+  margin: 0;
+}
+.bodha-back {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-top: 2rem;
 }
 
 /* Root page */
@@ -1463,7 +1648,8 @@ code.metre-pattern {
 .vc-notes p,
 .vc-notes li,
 .vc-meaning p,
-.sec-bodhah blockquote p {
+.sec-bodhah blockquote p,
+.bodha-quote p {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
@@ -1485,7 +1671,8 @@ code.metre-pattern {
   .vc-notes p,
   .vc-notes li,
   .vc-meaning p,
-  .sec-bodhah blockquote p {
+  .sec-bodhah blockquote p,
+  .bodha-quote p {
     text-align: left;
   }
 }
@@ -2034,6 +2221,21 @@ body {
 @media (max-width: 420px) {
   .mode-toggle-header {
     display: none;
+  }
+}
+/* Phones: the two index links (धातुमञ्जरी, बोधमञ्जरी) shrink to their motifs; the label stays for screen readers */
+@media (max-width: 520px) {
+  .icon-link {
+    padding: 9px;
+    border-radius: 999px;
+  }
+  .icon-link .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 }
 /* Paurṇamī dark: the halo stays a soft moon behind the title, not a spotlight */

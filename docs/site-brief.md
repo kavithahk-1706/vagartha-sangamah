@@ -11,10 +11,11 @@ One-time setup spec for Claude Code. Read this whole file before writing any cod
 | Site name | वागर्थसङ्गमः | Vāgartha-saṅgamaḥ | "The confluence of word and meaning" |
 | Each study page | `<text>`-बोधिनी | `<text>`-bodhinī | "That which awakens [the text]", the traditional commentary-naming style, e.g. सप्तश्लोकी-बोधिनी / Saptaślokī-bodhinī |
 | Roots index | धातुमञ्जरी | Dhātu-mañjarī | "A flower-cluster of roots" |
+| Bodhāḥ index | बोधमञ्जरी | Bodha-mañjarī | "A flower-cluster of awakenings": every बोधः from every bodhinī |
 
 - Repo / URL slug: `vagartha-sangamah`
 - In the UI, show the Devanagari first and the IAST beneath it.
-- **Every Sanskrit heading or label also gets a short English gloss**, so a visitor who doesn't know Sanskrit isn't lost. Format: `अनुक्रमणिका · Contents`. Add the IAST too where it fits without crowding (big section headings); small labels and nav get just Devanagari + English. The gloss is a plain translation, e.g. अनुक्रमणिका → Contents, धातुमञ्जरी → Root index.
+- **Every Sanskrit heading or label also gets a short English gloss**, so a visitor who doesn't know Sanskrit isn't lost. Format: `अनुक्रमणिका · Contents`. Add the IAST too where it fits without crowding (big section headings); small labels and nav get just Devanagari + English. The gloss is a plain translation, e.g. अनुक्रमणिका → Contents, धातुमञ्जरी → Root index, बोधमञ्जरी → Awakenings.
 
 ## 1. What this site is
 
@@ -113,6 +114,8 @@ related: []                   # other study slugs
   - Inline metre patterns are written compactly (e.g. `GGLGLLLGLLGLGG`) and must not be letter-spaced so wide that they wrap mid-pattern.
 - Home page: the study card grid goes 1 column on phones, 2 on tablets, 3 on laptops and 4 on wide desktops.
 - Dhātu-mañjarī index: a multi-column list on desktop (3–4 columns, grouped by initial varṇa); root pages show occurrence groups in a 2-column grid on desktop.
+- Bodha-mañjarī: the index uses the home page's study-card grid capped at 2 columns. Bodhinī pages are full page width (no narrow centred column), with the bodha cards in a CSS grid, `repeat(2, 1fr)` from 768px and 1 column below, so cards in a row share one height. Bodha pages use the root page layout.
+- Header: the two index links (धातुमञ्जरी, बोधमञ्जरी) show motif + Devanagari + English gloss; at ≤520px they shrink to their motifs (sprig, lotus), with the label kept for screen readers and as the hover title, so the header stays on one line at 360px.
 - Test at 360px, 768px, 1280px and 1920px widths. No horizontal page scroll at any width.
 
 ### Home page
@@ -143,13 +146,30 @@ related: []                   # other study slugs
 
 - **Dedication / preface:** below the hero, a centred heading **प्रस्तावना · Prastāvanā · Preface**, then the first paragraph of `content/pages/prastavana.md` centred, in *italics*, wrapped in “ ” quotation marks with a "पूर्णं पठतु · read in full →" link to a dedicated **प्रस्तावना · Prastāvanā · Preface** page (`/prastavana/`) that renders the whole file. Style it as a personal letter: justified on desktop, generous line height, no cards or boxes. Kavitha's lowercase style is intentional, so don't auto-capitalise.
 - One section per collection, each holding a grid of study cards: title in Devanagari and IAST, essence, verse count, date, tinted with that study's deity theme.
-- A link to the **Roots index**.
+- Two index cards side by side after the collections: **धातुमञ्जरी · Dhātu-mañjarī** (sprig, root index) and **बोधमञ्जरी · Bodha-mañjarī** (lotus, awakenings). Equal halves spanning the full page width, the same edges as the study-card grid (`.index-links`, 2 columns from 640px); stacked full-width on phones.
 - Newest studies first within each section.
 
 ### Roots index: धातुमञ्जरी (`/dhatu-manjari/`, root pages at `/dhatu-manjari/<root-slug>/`)
 - An alphabetical list in Sanskrit varṇa order (a ā i ī u ū ṛ … k kh g gh ṅ …), **not** English order.
 - Each root shows √root, its sense, and a count of occurrences across all studies.
 - Search or filter by root or meaning (a small client-side filter is fine).
+
+### Bodhāḥ index: बोधमञ्जरी (`/bodha-manjari/`, bodhinī pages at `/bodha-manjari/<study-slug>/`, bodha pages at `/bodha-manjari/<study-slug>/<n>/`)
+- Title **बोधमञ्जरी** / *Bodha-mañjarī*, gloss **Awakenings across all studies**, lotus motif. Linked from the header beside the धातुमञ्जरी.
+- **No data file.** Like the Dhātu-mañjarī it is built automatically: at build time `src/lib/bodhah.mjs` reads every `content/studies/**/*.md`, takes the section under `## बोधाः` (up to the next `##`; a `## Bodhāḥ` heading, or an older page's "Realizations", counts too), and parses each blockquote as one bodha, keeping its number, its `{#rN}` anchor, its `(on [v. N](#vN))` verse note and its text (a bare `>` line separates paragraphs within one bodha).
+- **Three levels**, the Dhātu-mañjarī pattern taken one step further: index (cards) → bodhinī page (every bodha in a grid) → bodha page (one bodha). All generated at build time; no manual linking.
+- **Deity accent on all three levels**, from the bodhinī's frontmatter `theme:`: the index card carries `data-theme`, and the bodhinī and bodha pages pass it to the layout (`<body data-theme>`), exactly as the study page does. Bodha numbers, card stripes, the bodha page numeral, quote stripe, title and links use `--accent` (the deity hue), never a reader theme's fixed role colour such as `--c-real`, so a devī study is red at every level in every reader theme. Section headings keep the reader theme's heading colour (`--c-head`), as on study and root pages.
+- **Index** (`/bodha-manjari/`): the home page's collection sections and study cards. Cards are grouped by collection (`देवीमाहात्म्यम्` etc., same order and headings as the home page), newest study first within each. Each card shows the bodhinī name (Devanagari, IAST beneath), its essence, the number of bodhāḥ and the study date, tinted with the study's deity accent, and links to the bodhinī page. The grid is the home page's `.card-grid` capped at **2 columns** (`.card-grid-2`): 1 column on phones, 2 from 640px.
+- **Bodhinī page** (`/bodha-manjari/<study-slug>/`, e.g. `/bodha-manjari/devi-mahatmya/saptashloki-durga/`): laid out like a root page, in the study's deity accent.
+  - Centred header: lotus motif, bodhinī name in Devanagari (h1) and IAST, the gloss `बोधाः · Awakenings`, then the source text, the number of bodhāḥ and the study date, with the `source` line beneath.
+  - Every bodha as an `.occ` card in a full-width grid: `grid-template-columns: repeat(2, 1fr)` from 768px, 1 column below; rows stretch so paired cards are the same height. Cards are **not** collapsible. Each shows its **number**, the **full bodha** in quotes (journal-margin italic), and along its foot the **verse reference(s)** as links to the exact verse on the study page plus a `बोधः n →` link. **The whole card is clickable**: that `बोधः n →` link is stretched over the card (`.bm-cover::after`, `inset: 0`), and the verse links sit above it (`z-index: 1`), so a click anywhere opens the bodha page except on a verse link, which goes to its verse. (A card can't simply be wrapped in `<a>`: links can't nest.)
+  - Back links at the foot: **← <bodhinī>** (the study page) and **← बोधमञ्जरी · Awakenings**.
+- **Bodha page** (`/bodha-manjari/<study-slug>/<n>/`, e.g. `/bodha-manjari/devi-mahatmya/saptashloki-durga/3/`): one per bodha, generated at build time like the root pages, never hand-edited. `<n>` is the bodha's written number (its position if it has none); two bodhāḥ with the same number in one study fail the build.
+  - **Centred header**, like a root page: lotus motif, the number large in Devanagari numerals, then बोधः, *Bodha n*, the source bodhinī (Devanagari · IAST) and the study date.
+  - **वचनम् · in her words:** the full bodha in quotes, as Kavitha wrote it, in an `.occ` card, with a "Read it in place" link to its exact anchor on the study page (`/<study>/#r3`).
+  - **श्लोकाः · verses:** the `(on …)` note, with every `#v…`/`#p…` link pointing at the exact verse on the study page. Omitted when the bodha has no verse note.
+  - Back links at the foot: **← <bodhinī>** (the full study page) and **← बोधमञ्जरी · Awakenings** (the index), as root pages end with "← धातुमञ्जरी · Root index".
+- The build **fails** if a bodha's own anchor or any of its verse links points at an id the study does not have, so the page can never ship a broken link.
 
 ### Root page (`/roots/<root-slug>/`)
 - √root in Devanagari and IAST, its sense, and its gaṇa if given.
