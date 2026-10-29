@@ -6,7 +6,7 @@ text_name_devanagari: "सप्तश्लोकी दुर्गा"
 slug: "devi-mahatmya/saptashloki-durga"
 collection: "Devi Mahatmya"
 theme: "devi"
-essence: "She who binds the mind is the one who frees it; when asked by Śiva how to succeed in Kali Yuga, she answers: \"it is my kārya, I do it\"."
+essence: "She who binds the mind is the one who frees it; when asked by Śiva how to acheive kāryasiddhi in Kali Yuga, she answers: \"it is my kārya, I do it\"."
 source: "Seven verses compiled from the Devī Māhātmya (Durgā Saptaśatī): 1.55, 4.17, 11.10, 11.12, 11.24, 11.29, 11.39"
 deity: "Durgā"
 verses: 7
@@ -52,11 +52,11 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 देवि त्वं भक्तसुलभे सर्वकार्यविधायिनी।
 कलौ हि कार्यसिद्ध्यर्थमुपायं ब्रूहि यत्नतः॥
 
-*śiva uvāca*
-*devi tvaṃ bhaktasulabhe sarvakāryavidhāyinī*
-*kalau hi kāryasiddhyartham upāyaṃ brūhi yatnataḥ*
+śiva uvāca
+devi tvaṃ bhaktasulabhe sarvakāryavidhāyinī |
+kalau hi kāryasiddhyartham upāyaṃ brūhi yatnataḥ ||
 
-**Padaccheda:** devi | tvam | bhakta-sulabhe | sarva-kārya-vidhāyinī | kalau | hi | kārya-siddhi-artham | upāyam | brūhi | yatnataḥ
+**Padaccheda:** devi · tvam · bhakta-sulabhe · sarva-kārya-vidhāyinī · kalau · hi · kārya-siddhi-artham · upāyam · brūhi · yatnataḥ
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -89,11 +89,11 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 शृणु देव प्रवक्ष्यामि कलौ सर्वेष्टसाधनम्।
 मया तवैव स्नेहेनाप्यम्बास्तुतिः प्रकाश्यते॥
 
-*devy uvāca*
-*śṛṇu deva pravakṣyāmi kalau sarveṣṭasādhanam*
-*mayā tavaiva snehenāpy ambāstutiḥ prakāśyate*
+devy uvāca
+śṛṇu deva pravakṣyāmi kalau sarveṣṭasādhanam |
+mayā tavaiva snehenāpy ambāstutiḥ prakāśyate ||
 
-**Padaccheda:** śṛṇu | deva | pravakṣyāmi | kalau | sarva-iṣṭa-sādhanam | mayā | tava | eva | snehena | api | ambā-stutiḥ | prakāśyate
+**Padaccheda:** śṛṇu · deva · pravakṣyāmi · kalau · sarva-iṣṭa-sādhanam · mayā · tava · eva · snehena · api · ambā-stutiḥ · prakāśyate
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -123,7 +123,7 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 ॐ अस्य श्रीदुर्गासप्तश्लोकीस्तोत्रमन्त्रस्य नारायण ऋषिः, अनुष्टुप् छन्दः, श्रीमहाकालीमहालक्ष्मीमहासरस्वत्यो देवताः, श्रीदुर्गाप्रीत्यर्थं सप्तश्लोकीदुर्गापाठे विनियोगः।
 
-*oṃ asya śrīdurgāsaptaślokīstotramantrasya nārāyaṇa ṛṣiḥ, anuṣṭup chandaḥ, śrīmahākālīmahālakṣmīmahāsarasvatyo devatāḥ, śrīdurgāprītyarthaṃ saptaślokīdurgāpāṭhe viniyogaḥ*
+oṃ asya śrīdurgāsaptaślokīstotramantrasya nārāyaṇa ṛṣiḥ, anuṣṭup chandaḥ, śrīmahākālīmahālakṣmīmahāsarasvatyo devatāḥ, śrīdurgāprītyarthaṃ saptaślokīdurgāpāṭhe viniyogaḥ
 
 | Word | Grammar | Meaning |
 |---|---|---|
@@ -149,16 +149,16 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 ## Verses
 
-### 1. jñāninām api cetāṃsi {#v1}
+### 1. ज्ञानिनामपि चेतांसि {#v1}
 *Source: Devī Māhātmya 1.55 · Metre: anuṣṭup*
 
 ज्ञानिनामपि चेतांसि देवी भगवती हि सा।
 बलादाकृष्य मोहाय महामाया प्रयच्छति॥
 
-*jñāninām api cetāṃsi devī bhagavatī hi sā*
-*balād ākṛṣya mohāya mahāmāyā prayacchati*
+jñāninām api cetāṃsi devī bhagavatī hi sā |
+balād ākṛṣya mohāya mahāmāyā prayacchati ||
 
-**Padaccheda:** jñāninām | api | cetāṃsi | devī | bhagavatī | hi | sā | balāt | ākṛṣya | mohāya | mahāmāyā | prayacchati
+**Padaccheda:** jñāninām · api · cetāṃsi · devī · bhagavatī · hi · sā · balāt · ākṛṣya · mohāya · mahāmāyā · prayacchati
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -193,7 +193,9 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **बोधाः:** [1](#r1), [2](#r2), [3](#r3), [4](#r4), [6](#r6)
 
-### 2. durge smṛtā harasi {#v2}
+---
+
+### 2. दुर्गे स्मृता हरसि {#v2}
 *Source: Devī Māhātmya 4.17, Śakrādi-stuti · Metre: vasantatilakā*
 
 दुर्गे स्मृता हरसि भीतिमशेषजन्तोः
@@ -201,12 +203,12 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 दारिद्र्यदुःखभयहारिणि का त्वदन्या
 सर्वोपकारकरणाय सदार्द्रचित्ता॥
 
-*durge smṛtā harasi bhītim aśeṣajantoḥ*
-*svasthaiḥ smṛtā matim atīva śubhāṃ dadāsi*
-*dāridryaduḥkhabhayahāriṇi kā tvadanyā*
-*sarvopakārakaraṇāya sadārdracittā*
+durge smṛtā harasi bhītim aśeṣajantoḥ |
+svasthaiḥ smṛtā matim atīva śubhāṃ dadāsi |
+dāridryaduḥkhabhayahāriṇi kā tvadanyā |
+sarvopakārakaraṇāya sadārdracittā ||
 
-**Padaccheda:** durge | smṛtā | harasi | bhītim | aśeṣa-jantoḥ | svasthaiḥ | smṛtā | matim | atīva | śubhām | dadāsi | dāridrya-duḥkha-bhaya-hāriṇi | kā | tvat-anyā | sarva-upakāra-karaṇāya | sadā | ārdra-cittā
+**Padaccheda:** durge · smṛtā · harasi · bhītim · aśeṣa-jantoḥ · svasthaiḥ · smṛtā · matim · atīva · śubhām · dadāsi · dāridrya-duḥkha-bhaya-hāriṇi · kā · tvat-anyā · sarva-upakāra-karaṇāya · sadā · ārdra-cittā
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -243,16 +245,18 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **बोधाः:** [1](#r1), [4](#r4), [6](#r6)
 
-### 3. sarvamaṅgalamāṅgalye {#v3}
+---
+
+### 3. सर्वमङ्गलमाङ्गल्ये {#v3}
 *Source: Devī Māhātmya 11.10, Nārāyaṇī-stuti · Metre: anuṣṭup*
 
 सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके।
 शरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते॥
 
-*sarvamaṅgalamāṅgalye śive sarvārthasādhike*
-*śaraṇye tryambake gauri nārāyaṇi namo 'stu te*
+sarvamaṅgalamāṅgalye śive sarvārthasādhike |
+śaraṇye tryambake gauri nārāyaṇi namo'stu te ||
 
-**Padaccheda:** sarva-maṅgala-māṅgalye | śive | sarva-artha-sādhike | śaraṇye | tryambake | gauri | nārāyaṇi | namaḥ | astu | te
+**Padaccheda:** sarva-maṅgala-māṅgalye · śive · sarva-artha-sādhike · śaraṇye · tryambake · gauri · nārāyaṇi · namaḥ · astu · te
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -279,16 +283,18 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 - *namostute* splits as *namaḥ + astu + te*, not *namostu + te*.
 - Her readings of śive, sarvārthasādhike, tryambake, gauri and both senses of nārāyaṇi were correct.
 
-### 4. śaraṇāgatadīnārta {#v4}
+---
+
+### 4. शरणागतदीनार्त {#v4}
 *Source: Devī Māhātmya 11.12 · Metre: anuṣṭup*
 
 शरणागतदीनार्तपरित्राणपरायणे।
 सर्वस्यार्तिहरे देवि नारायणि नमोऽस्तु ते॥
 
-*śaraṇāgatadīnārtaparitrāṇaparāyaṇe*
-*sarvasyārtihare devi nārāyaṇi namo 'stu te*
+śaraṇāgatadīnārtaparitrāṇaparāyaṇe |
+sarvasyārtihare devi nārāyaṇi namo'stu te ||
 
-**Padaccheda:** śaraṇa-āgata-dīna-ārta-paritrāṇa-parāyaṇe | sarvasya | ārti-hare | devi | nārāyaṇi | namaḥ | astu | te
+**Padaccheda:** śaraṇa-āgata-dīna-ārta-paritrāṇa-parāyaṇe · sarvasya · ārti-hare · devi · nārāyaṇi · namaḥ · astu · te
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -314,16 +320,18 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **बोधाः:** [5](#r5)
 
-### 5. sarvasvarūpe sarveśe {#v5}
+---
+
+### 5. सर्वस्वरूपे सर्वेशे {#v5}
 *Source: Devī Māhātmya 11.24 · Metre: anuṣṭup*
 
 सर्वस्वरूपे सर्वेशे सर्वशक्तिसमन्विते।
 भयेभ्यस्त्राहि नो देवि दुर्गे देवि नमोऽस्तु ते॥
 
-*sarvasvarūpe sarveśe sarvaśaktisamanvite*
-*bhayebhyas trāhi no devi durge devi namo 'stu te*
+sarvasvarūpe sarveśe sarvaśaktisamanvite |
+bhayebhyas trāhi no devi durge devi namo'stu te ||
 
-**Padaccheda:** sarva-svarūpe | sarva-īśe | sarva-śakti-samanvite | bhayebhyaḥ | trāhi | naḥ | devi | durge | devi | namaḥ | astu | te
+**Padaccheda:** sarva-svarūpe · sarva-īśe · sarva-śakti-samanvite · bhayebhyaḥ · trāhi · naḥ · devi · durge · devi · namaḥ · astu · te
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -349,7 +357,9 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **बोधाः:** [6](#r6)
 
-### 6. rogān aśeṣān apahaṃsi {#v6}
+---
+
+### 6. रोगानशेषानपहंसि {#v6}
 *Source: Devī Māhātmya 11.29 · Metre: indravajrā*
 
 रोगानशेषानपहंसि तुष्टा
@@ -357,12 +367,12 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 त्वामाश्रितानां न विपन्नराणां
 त्वामाश्रिता ह्याश्रयतां प्रयान्ति॥
 
-*rogān aśeṣān apahaṃsi tuṣṭā*
-*ruṣṭā tu kāmān sakalān abhīṣṭān*
-*tvām āśritānāṃ na vipan narāṇāṃ*
-*tvām āśritā hy āśrayatāṃ prayānti*
+rogān aśeṣān apahaṃsi tuṣṭā |
+ruṣṭā tu kāmān sakalān abhīṣṭān |
+tvām āśritānāṃ na vipan narāṇāṃ |
+tvām āśritā hy āśrayatāṃ prayānti ||
 
-**Padaccheda:** rogān | aśeṣān | apahaṃsi | tuṣṭā | ruṣṭā | tu | kāmān | sakalān | abhīṣṭān | tvām | āśritānām | na | vipat | narāṇām | tvām | āśritāḥ | hi | āśrayatām | prayānti
+**Padaccheda:** rogān · aśeṣān · apahaṃsi · tuṣṭā · ruṣṭā · tu · kāmān · sakalān · abhīṣṭān · tvām · āśritānām · na · vipat · narāṇām · tvām · āśritāḥ · hi · āśrayatām · prayānti
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
@@ -389,16 +399,18 @@ This page records a word-by-word **adhyayana** (study pass), not the formal *pā
 
 **बोधाः:** [7](#r7)
 
-### 7. sarvābādhāpraśamanam {#v7}
+---
+
+### 7. सर्वाबाधाप्रशमनं {#v7}
 *Source: Devī Māhātmya 11.39, the closing verse of the Nārāyaṇī-stuti · Metre: anuṣṭup*
 
 सर्वाबाधाप्रशमनं त्रैलोक्यस्याखिलेश्वरि।
 एवमेव त्वया कार्यमस्मद्वैरिविनाशनम्॥
 
-*sarvābādhāpraśamanaṃ trailokyasyākhileśvari*
-*evam eva tvayā kāryam asmadvairivināśanam*
+sarvābādhāpraśamanaṃ trailokyasyākhileśvari |
+evam eva tvayā kāryam asmadvairivināśanam ||
 
-**Padaccheda:** sarva-ābādhā-praśamanam | trailokyasya | akhila-īśvari | evam | eva | tvayā | kāryam | asmat-vairi-vināśanam
+**Padaccheda:** sarva-ābādhā-praśamanam · trailokyasya · akhila-īśvari · evam · eva · tvayā · kāryam · asmat-vairi-vināśanam
 
 | Word | Root / grammar | Meaning |
 |---|---|---|
