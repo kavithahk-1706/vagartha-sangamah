@@ -103,15 +103,9 @@ function buildCard(h3, body, links, base) {
     if (isBlank(n)) continue;
     if (n.type === 'element' && n.tagName === 'p') {
       const label = takeLabel(n);
-      // "**बोधाः:** [1](#r1), …" sits on the title row, far right, in parentheses.
+      // "**बोधाः:** [1](#r1), …" sits on the title row, far right, in parentheses; the links speak for themselves, so no label.
       if (label && isBodhah(label)) {
-        bodhah = el('p', { className: ['vc-bodhah'] }, [
-          txt('('),
-          el('span', { className: ['deva'], lang: 'sa' }, [txt(BODHAH)]),
-          txt(' '),
-          ...n.children,
-          txt(')'),
-        ]);
+        bodhah = el('p', { className: ['vc-bodhah'] }, [txt('('), ...n.children, txt(')')]);
         continue;
       }
       if (label && /^padaccheda$/i.test(label)) {

@@ -435,14 +435,16 @@ body *:hover {
 .vc-head > h3 {
   margin: 0;
 }
+/* Links fit beside the title when they can; otherwise they drop below it, still right-aligned,
+   and wrap inside the card. */
 .vc-bodhah {
   margin: 0 0 0 auto;
+  min-width: 0;
+  max-width: 100%;
   font-size: 0.9rem;
   color: var(--muted);
-  white-space: nowrap;
-}
-.vc-bodhah .deva {
-  font-family: var(--font-deva);
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 .vc-bodhah a {
   color: var(--accent-2);
@@ -1860,6 +1862,16 @@ main > :nth-child(n + 3) {
 .band h1,
 .page-head h1 {
   color: var(--c-title);
+}
+/* Long Devanagari titles never push the page sideways: they break at their hyphens first,
+   and anywhere only if a piece still won't fit the column. */
+.hero h1,
+.band h1,
+.page-head h1,
+.bodha-head h1 {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 .bodhini .sec > h2,
 .collection-head h2,
